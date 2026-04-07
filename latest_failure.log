@@ -1,0 +1,1930 @@
+[Container] 2026/04/07 14:38:32.768077 Running on CodeBuild On-demand
+[Container] 2026/04/07 14:38:32.768095 Waiting for agent ping
+[Container] 2026/04/07 14:38:33.971927 Waiting for DOWNLOAD_SOURCE
+[Container] 2026/04/07 14:39:26.445328 Phase is DOWNLOAD_SOURCE
+[Container] 2026/04/07 14:39:26.446058 CODEBUILD_SRC_DIR=/codebuild/output/src2265/src
+[Container] 2026/04/07 14:39:26.446147 CODEBUILD_SRC_DIR_db_slots=/codebuild/output/src2265/src/s3/02
+[Container] 2026/04/07 14:39:26.451713 CODEBUILD_SRC_DIR_inventory=/codebuild/output/src2265/src/s3/01
+[Container] 2026/04/07 14:39:26.454985 YAML location is /codebuild/readonly/buildspec.yml
+[Container] 2026/04/07 14:39:26.455128 No commands found for phase name: install
+[Container] 2026/04/07 14:39:26.456391 Processing environment variables
+[Container] 2026/04/07 14:39:26.491193 [WARN] Skipping install of runtimes. Runtime version selection is not supported by this build image.
+[Container] 2026/04/07 14:39:26.517240 Moving to directory /codebuild/output/src2265/src
+[Container] 2026/04/07 14:39:26.517259 Cache is not defined in the buildspec
+[Container] 2026/04/07 14:39:26.563245 Skip cache due to: no paths specified to be cached
+[Container] 2026/04/07 14:39:26.563459 Registering with agent
+[Container] 2026/04/07 14:39:26.595273 Phases found in YAML: 3
+[Container] 2026/04/07 14:39:26.595300  POST_BUILD: 1 commands
+[Container] 2026/04/07 14:39:26.595306  INSTALL: 0 commands
+[Container] 2026/04/07 14:39:26.595308  BUILD: 1 commands
+[Container] 2026/04/07 14:39:26.595666 Phase complete: DOWNLOAD_SOURCE State: SUCCEEDED
+[Container] 2026/04/07 14:39:26.595677 Phase context status code:  Message: 
+[Container] 2026/04/07 14:39:26.689291 Entering phase INSTALL
+[Container] 2026/04/07 14:39:26.756021 Phase complete: INSTALL State: SUCCEEDED
+[Container] 2026/04/07 14:39:26.756034 Phase context status code:  Message: 
+[Container] 2026/04/07 14:39:26.788629 Entering phase PRE_BUILD
+[Container] 2026/04/07 14:39:26.790750 Phase complete: PRE_BUILD State: SUCCEEDED
+[Container] 2026/04/07 14:39:26.790758 Phase context status code:  Message: 
+[Container] 2026/04/07 14:39:26.825819 Entering phase BUILD
+[Container] 2026/04/07 14:39:26.826384 Running command # See the log above for errors!!!
+
+# Define playbook parameters. This is managed by terraform.
+export PLAYBOOK="mssql_cluster"
+export ENVIRONMENT="qa"
+export ARTIFACTS_BUCKET="hedgeserv-qa-avm-us-east-2-s3-artifacts"
+export ARTIFACTS_BUCKET_KMS="54d67ee6-ec84-477c-9a50-5ef87d6f0bc6"
+
+printenv | sort | grep -v GITHUB_TOKEN | tee /tmp/env.txt
+
+echo "Set python files in inventory as executable"
+find $CODEBUILD_SRC_DIR_inventory/ -type f -name *.py -exec chmod a+x {} \;
+
+echo "Change dir to /opt/ansible/playbooks/$PLAYBOOK"
+cd /opt/ansible/playbooks/$PLAYBOOK/
+
+bash buildspec.sh
+
+ARTIFACTS_BUCKET=hedgeserv-qa-avm-us-east-2-s3-artifacts
+ARTIFACTS_BUCKET_KMS=54d67ee6-ec84-477c-9a50-5ef87d6f0bc6
+AWS_CONTAINER_CREDENTIALS_RELATIVE_URI=/v2/credentials/3be27178-fc72-458b-a5c6-d9557e917ed2
+AWS_DEFAULT_REGION=us-east-2
+AWS_EXECUTION_ENV=AWS_ECS_EC2
+AWS_REGION=us-east-2
+CHECK_MODE=false
+CLUSTER_NAME=TQA52SQLCL2221
+CODEBUILD_ACTION_RUNNER_URL=https://codefactory-us-east-2-prod-default-build-agent-executor.s3.us-east-2.amazonaws.com/cawsrunner.zip
+CODEBUILD_AGENT_ENDPOINT=http://127.0.0.1:7831
+CODEBUILD_AUTH_TOKEN=6c27852a-ad97-4dc2-b7cc-5d87c77b2c6e
+CODEBUILD_BMR_URL=https://CODEBUILD_AGENT:3000
+CODEBUILD_BUILD_ARN=arn:aws:codebuild:us-east-2:213997214095:build/app-qa-avm-us-east-2-playbook-mssql_cluster:713e9bf9-3c86-4fb1-bb3c-a170218ac147
+CODEBUILD_BUILD_ID=app-qa-avm-us-east-2-playbook-mssql_cluster:713e9bf9-3c86-4fb1-bb3c-a170218ac147
+CODEBUILD_BUILD_IMAGE=469620122115.dkr.ecr.us-east-2.amazonaws.com/core-shd-ansible-us-east-2-ecr-hs_playbooks:rel_qa_shared
+CODEBUILD_BUILD_NUMBER=1007
+CODEBUILD_BUILD_SUCCEEDING=1
+CODEBUILD_BUILD_URL=https://us-east-2.console.aws.amazon.com/codebuild/home?region=us-east-2#/builds/app-qa-avm-us-east-2-playbook-mssql_cluster:713e9bf9-3c86-4fb1-bb3c-a170218ac147/view/new
+CODEBUILD_CI=true
+CODEBUILD_CONTAINER_NAME=default
+CODEBUILD_CTS_ENDPOINT=https://codebuild-builds.us-east-2.amazonaws.com
+CODEBUILD_EXECUTION_ROLE_BUILD=true
+CODEBUILD_FE_REPORT_ENDPOINT=https://codebuild.us-east-2.amazonaws.com/
+CODEBUILD_GOPATH=/codebuild/output/src2265
+CODEBUILD_INITIATOR=InfrastructureCodeBuildCustomServiceRole/AWSCodeBuild-fbe8d3e0-f120-41eb-b866-f3853be80e9d
+CODEBUILD_KMS_KEY_ID=arn:aws:kms:us-east-2:213997214095:alias/aws/s3
+CODEBUILD_LAST_EXIT=0
+CODEBUILD_LOG_PATH=713e9bf9-3c86-4fb1-bb3c-a170218ac147
+CODEBUILD_PROJECT_ARN=arn:aws:codebuild:us-east-2:213997214095:project/app-qa-avm-us-east-2-playbook-mssql_cluster
+CODEBUILD_PROJECT_UUID=7a047d1d-ecd9-4ad7-b633-40a7c9588ad4
+CODEBUILD_SCRIPT_DIR=/codebuild/output/tmp
+CODEBUILD_SOURCE_REPO_URL_db_slots=hedgeserv-shd-ci-us-east-2-s3-configs/
+CODEBUILD_SOURCE_REPO_URL_inventory=hedgeserv-shd-ansible-us-east-2-s3-inventory/
+CODEBUILD_SRC_DIR=/codebuild/output/src2265/src
+CODEBUILD_SRC_DIR_db_slots=/codebuild/output/src2265/src/s3/02
+CODEBUILD_SRC_DIR_inventory=/codebuild/output/src2265/src/s3/01
+CODEBUILD_START_TIME=1775572632912
+CODEBUILD_VPC_AZ=us-east-2b
+CTS_LINK_LOCAL_ADDR=169.254.170.3
+ECS_AGENT_URI=http://169.254.170.2/api/8af45688-ffaa-4d91-a014-b171ca455aa6
+ECS_CONTAINER_METADATA_URI=http://169.254.170.2/v3/8af45688-ffaa-4d91-a014-b171ca455aa6
+ECS_CONTAINER_METADATA_URI_V4=http://169.254.170.2/v4/8af45688-ffaa-4d91-a014-b171ca455aa6
+ENVIRONMENT=qa
+EXTRA_VARS=
+FE_REPORT_LINK_LOCAL_ADDR=169.254.170.8
+GOPATH=/codebuild/output/src2265
+HOME=/root
+HOSTNAME=ip-10-106-125-166.us-east-2.compute.internal
+HSRC=/root/.hsrc
+MAVEN_OPTS=-Dmaven.wagon.httpconnectionManager.maxPerRoute=2
+OLDPWD=/codebuild/readonly
+PATH=/opt/ansible/bin:/opt/chefdk/bin:/opt/python3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/codebuild/user/bin
+PLAYBOOK=mssql_cluster
+PWD=/codebuild/output/src2265/src
+SHLVL=2
+UV_SYSTEM_PYTHON=1
+VERBOSE=false
+_=/usr/bin/printenv
+Set python files in inventory as executable
+Change dir to /opt/ansible/playbooks/mssql_cluster
+Setup boto credentials
+Set trap for report upload
+Parse parameters
+ansible-playbook mssql_cluster.yml -i /codebuild/output/src2265/src/s3/01/qa                             --extra-vars cluster_name=TQA52SQLCL2221                             --extra-vars db_config_file=/codebuild/output/src2265/src/s3/02/configs/qa/databases/config.json                               
+[WARNING]: Invalid characters were found in group names but not replaced, use
+-vvvv to see details
+
+PLAY [Domain join cluster nodes] ***********************************************
+
+TASK [Get instance data] *******************************************************
+ok: [10.106.194.252 -> localhost]
+ok: [10.106.192.74 -> localhost]
+
+TASK [Load domain member role] *************************************************
+
+TASK [hs_role_domain_member : Test domain credentials] *************************
+fatal: [10.106.194.252]: FAILED! => {"changed": false, "elapsed": 300, "msg": "timed out waiting for ping module test: credssp: Received error status from the server: (3221225581) STATUS_LOGON_FAILURE 0xc000006d"}
+...ignoring
+fatal: [10.106.192.74]: FAILED! => {"changed": false, "elapsed": 300, "msg": "timed out waiting for ping module test: credssp: Received error status from the server: (3221225581) STATUS_LOGON_FAILURE 0xc000006d"}
+...ignoring
+
+TASK [hs_role_domain_member : Legacy DR DNS handler] ***************************
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_domain_member : Gather facts] ************************************
+ok: [10.106.192.74]
+ok: [10.106.194.252]
+
+TASK [hs_role_domain_member : Execute package Windows] *************************
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_domain_member : Execute hostname Windows] ************************
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_domain_member/tasks/hostname_Windows.yml for 10.106.192.74, 10.106.194.252
+
+TASK [hs_role_domain_member : Change the hostname to {{ server_name | upper }}] ***
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_domain_member : Reboot for the new hostname to take effect] ******
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_domain_member : Execute join domain Windows] *********************
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_domain_member/tasks/join_domain_Windows.yml for 10.106.192.74, 10.106.194.252
+
+TASK [hs_role_domain_member : Join domain] *************************************
+changed: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_domain_member : Reboot after joining the domain] *****************
+changed: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_domain_member : Wait for connection 300 seconds] *****************
+ok: [10.106.192.74]
+ok: [10.106.194.252]
+
+TASK [hs_role_domain_member : Execute PAM Windows] *****************************
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_domain_member/tasks/pam_Windows.yml for 10.106.192.74, 10.106.194.252
+
+TASK [hs_role_domain_member : Add L1 to local users] ***************************
+changed: [10.106.192.74]
+changed: [10.106.194.252]
+
+TASK [hs_role_domain_member : Add L2 to local administrators] ******************
+changed: [10.106.192.74]
+changed: [10.106.194.252]
+
+TASK [hs_role_domain_member : Add service-ansible@hedgeservtest.com to local administrators] ***
+changed: [10.106.192.74]
+changed: [10.106.194.252]
+
+TASK [hs_role_domain_member : Delete local bootstrap users from server] ********
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_domain_member/tasks/service_accounts_Windows.yml for 10.106.192.74, 10.106.194.252
+
+TASK [hs_role_domain_member : pause 5 sec before deleting bootstrap user] ******
+Pausing for 5 seconds
+(ctrl+C then 'C' = continue early, ctrl+C then 'A' = abort)
+ok: [10.106.192.74]
+
+TASK [hs_role_domain_member : Delete bootstrap user - codebuild-admin] *********
+changed: [10.106.192.74]
+changed: [10.106.194.252]
+
+TASK [hs_role_domain_member : Delete legacy bootstrap user - bootstrap] ********
+ok: [10.106.192.74]
+ok: [10.106.194.252]
+
+PLAY [Setup cluster nodes] *****************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [10.106.192.74]
+ok: [10.106.194.252]
+
+TASK [Load windows base role] **************************************************
+
+TASK [hs_role_base_Windows : Convert instance config dict to a list] ***********
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_base_Windows : Execute Tasks] ************************************
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_base_Windows/tasks/common.yml for 10.106.192.74, 10.106.194.252 => (item=common.yml)
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_base_Windows/tasks/uac.yml for 10.106.192.74, 10.106.194.252 => (item=uac.yml)
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_base_Windows/tasks/powershell_repository.yml for 10.106.192.74, 10.106.194.252 => (item=powershell_repository.yml)
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_base_Windows/tasks/powershell_execution_policy.yml for 10.106.192.74, 10.106.194.252 => (item=powershell_execution_policy.yml)
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_base_Windows/tasks/update_ca_certs.yml for 10.106.192.74, 10.106.194.252 => (item=update_ca_certs.yml)
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_base_Windows/tasks/firewall.yml for 10.106.192.74, 10.106.194.252 => (item=firewall.yml)
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_base_Windows/tasks/directorycache.yml for 10.106.192.74, 10.106.194.252 => (item=directorycache.yml)
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_base_Windows/tasks/datetime.yml for 10.106.192.74, 10.106.194.252 => (item=datetime.yml)
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_base_Windows/tasks/dns_suffix.yml for 10.106.192.74, 10.106.194.252 => (item=dns_suffix.yml)
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_base_Windows/tasks/crowdstrike.yml for 10.106.192.74, 10.106.194.252 => (item=crowdstrike.yml)
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_base_Windows/tasks/package_installer.yml for 10.106.192.74, 10.106.194.252 => (item=package_installer.yml)
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_base_Windows/tasks/darktrace_os_sensor.yml for 10.106.192.74, 10.106.194.252 => (item=darktrace_os_sensor.yml)
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_base_Windows/tasks/ntrights.yml for 10.106.192.74, 10.106.194.252 => (item=ntrights.yml)
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_base_Windows/tasks/laps.yml for 10.106.192.74, 10.106.194.252 => (item=laps.yml)
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_base_Windows/tasks/powershell_memory.yml for 10.106.192.74, 10.106.194.252 => (item=powershell_memory.yml)
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_base_Windows/tasks/activate_windows.yml for 10.106.192.74, 10.106.194.252 => (item=activate_windows.yml)
+
+TASK [hs_role_base_Windows : Creating Temp Path] *******************************
+ok: [10.106.192.74]
+ok: [10.106.194.252]
+
+TASK [hs_role_base_Windows : Resize C drive to its maximum size] ***************
+ok: [10.106.192.74]
+ok: [10.106.194.252]
+
+TASK [hs_role_base_Windows : Patch win_partition] ******************************
+changed: [10.106.194.252 -> 127.0.0.1]
+ok: [10.106.192.74 -> 127.0.0.1]
+
+TASK [hs_role_base_Windows : Calling block to setup volumes via loop] **********
+
+TASK [hs_role_base_Windows : Disable User Account Control] *********************
+changed: [10.106.192.74]
+changed: [10.106.194.252]
+
+TASK [hs_role_base_Windows : Check if PowerShell Default profile exists] *******
+ok: [10.106.192.74]
+ok: [10.106.194.252]
+
+TASK [hs_role_base_Windows : PowerShell Repository - create directory structure] ***
+ok: [10.106.192.74]
+ok: [10.106.194.252]
+
+TASK [hs_role_base_Windows : PowerShell repository - download nuget provider dll] ***
+ok: [10.106.192.74]
+ok: [10.106.194.252]
+
+TASK [hs_role_base_Windows : PowerShell Repository - create directory structure] ***
+ok: [10.106.192.74]
+ok: [10.106.194.252]
+
+TASK [hs_role_base_Windows : Download nugets to specified path] ****************
+[WARNING]: The loop variable 'item' is already in use. You should set the
+`loop_var` value in the `loop_control` option for the task to something else to
+avoid variable collisions and unexpected behavior.
+[WARNING]: The loop variable 'item' is already in use. You should set the
+`loop_var` value in the `loop_control` option for the task to something else to
+avoid variable collisions and unexpected behavior.
+ok: [10.106.192.74] => (item=ActiveDirectoryDsc.6.1.0.nupkg)
+ok: [10.106.194.252] => (item=ActiveDirectoryDsc.6.1.0.nupkg)
+ok: [10.106.192.74] => (item=ComputerManagementDsc.8.4.0.nupkg)
+ok: [10.106.194.252] => (item=ComputerManagementDsc.8.4.0.nupkg)
+ok: [10.106.192.74] => (item=CredentialManager.2.0.nupkg)
+ok: [10.106.194.252] => (item=CredentialManager.2.0.nupkg)
+ok: [10.106.192.74] => (item=Get-ActiveUser.1.4.nupkg)
+ok: [10.106.194.252] => (item=Get-ActiveUser.1.4.nupkg)
+ok: [10.106.192.74] => (item=Microsoft.PowerShell.PSResourceGet.1.0.1.nupkg)
+ok: [10.106.194.252] => (item=Microsoft.PowerShell.PSResourceGet.1.0.1.nupkg)
+ok: [10.106.192.74] => (item=Microsoft.PowerShell.SecretManagement.1.1.2.nupkg)
+ok: [10.106.194.252] => (item=Microsoft.PowerShell.SecretManagement.1.1.2.nupkg)
+ok: [10.106.192.74] => (item=Microsoft.PowerShell.SecretStore.1.0.6.nupkg)
+ok: [10.106.194.252] => (item=Microsoft.PowerShell.SecretStore.1.0.6.nupkg)
+ok: [10.106.192.74] => (item=NetworkingDsc.8.1.0.nupkg)
+ok: [10.106.194.252] => (item=NetworkingDsc.8.1.0.nupkg)
+ok: [10.106.192.74] => (item=NuGet.1.3.3.nupkg)
+ok: [10.106.194.252] => (item=NuGet.1.3.3.nupkg)
+ok: [10.106.192.74] => (item=PackageManagement.1.4.8.1.nupkg)
+ok: [10.106.194.252] => (item=PackageManagement.1.4.8.1.nupkg)
+ok: [10.106.192.74] => (item=PowerShellGet.2.2.5.nupkg)
+ok: [10.106.194.252] => (item=PowerShellGet.2.2.5.nupkg)
+ok: [10.106.192.74] => (item=PowerShellGet.3.0.23-beta23.nupkg)
+ok: [10.106.194.252] => (item=PowerShellGet.3.0.23-beta23.nupkg)
+changed: [10.106.192.74] => (item=SqlServer.22.1.1.nupkg)
+changed: [10.106.194.252] => (item=SqlServer.22.1.1.nupkg)
+changed: [10.106.192.74] => (item=SqlServerDsc.14.2.1.nupkg)
+changed: [10.106.194.252] => (item=SqlServerDsc.14.2.1.nupkg)
+changed: [10.106.192.74] => (item=SqlServerDsc.16.0.0-preview0005.nupkg)
+changed: [10.106.194.252] => (item=SqlServerDsc.16.0.0-preview0005.nupkg)
+changed: [10.106.192.74] => (item=SqlServerDsc.16.4.0.nupkg)
+changed: [10.106.194.252] => (item=SqlServerDsc.16.4.0.nupkg)
+changed: [10.106.192.74] => (item=xFailOverCluster.1.14.1.nupkg)
+changed: [10.106.194.252] => (item=xFailOverCluster.1.14.1.nupkg)
+
+TASK [hs_role_base_Windows : PowerShell Repository - create directory structure] ***
+ok: [10.106.192.74]
+ok: [10.106.194.252]
+
+TASK [hs_role_base_Windows : PowerShell repository - setup repository] *********
+changed: [10.106.192.74]
+changed: [10.106.194.252]
+
+TASK [hs_role_base_Windows : PowerShell repository - setup repository] *********
+changed: [10.106.192.74]
+changed: [10.106.194.252]
+
+TASK [hs_role_base_Windows : PowerShell repository - remove default Microsoft repository] ***
+changed: [10.106.192.74]
+changed: [10.106.194.252]
+
+TASK [hs_role_base_Windows : Set PowerShell Default profile] *******************
+changed: [10.106.192.74]
+changed: [10.106.194.252]
+
+TASK [hs_role_base_Windows : Add DSC module for ComputerManagement] ************
+changed: [10.106.192.74]
+changed: [10.106.194.252]
+
+TASK [hs_role_base_Windows : Set ExecutionPolicy to RemoteSigned] **************
+changed: [10.106.192.74]
+changed: [10.106.194.252]
+
+TASK [hs_role_base_Windows : Check if Certs Dir already exists] ****************
+ok: [10.106.192.74]
+ok: [10.106.194.252]
+
+TASK [hs_role_base_Windows : Download HedgeServ CA bundle] *********************
+changed: [10.106.192.74]
+changed: [10.106.194.252]
+
+TASK [hs_role_base_Windows : Unzip certificate bundle] *************************
+changed: [10.106.192.74]
+changed: [10.106.194.252]
+
+TASK [hs_role_base_Windows : Load certificate files] ***************************
+ok: [10.106.192.74]
+ok: [10.106.194.252]
+
+TASK [hs_role_base_Windows : Import certificates] ******************************
+changed: [10.106.192.74] => (item={'path': 'C:\\Temp\\certs\\hs_root_certificates-master\\certs\\DRHSCsubCA.pem', 'extension': '.pem', 'filename': 'DRHSCsubCA.pem', 'creationtime': 1775573288.7212756, 'checksum': '876b7dec9e497ef2f73cec85ae8c617d659cc974', 'size': 2240, 'isreadonly': False, 'attributes': 'Archive', 'lastaccesstime': 1775573288.7212756, 'isreg': True, 'isjunction': False, 'islnk': False, 'isarchive': True, 'lastwritetime': 1725553050, 'nlink': 1, 'isshared': False, 'ishidden': False, 'exists': True, 'isdir': False, 'lnk_target': None, 'sharename': None, 'hlnk_targets': [], 'lnk_source': None, 'owner': 'BUILTIN\\Administrators'})
+changed: [10.106.194.252] => (item={'path': 'C:\\Temp\\certs\\hs_root_certificates-master\\certs\\DRHSCsubCA.pem', 'extension': '.pem', 'filename': 'DRHSCsubCA.pem', 'creationtime': 1775573288.7601385, 'checksum': '876b7dec9e497ef2f73cec85ae8c617d659cc974', 'size': 2240, 'isreadonly': False, 'attributes': 'Archive', 'lastaccesstime': 1775573288.7606702, 'isreg': True, 'isjunction': False, 'islnk': False, 'isarchive': True, 'lastwritetime': 1725553050, 'nlink': 1, 'isshared': False, 'ishidden': False, 'exists': True, 'isdir': False, 'lnk_target': None, 'sharename': None, 'hlnk_targets': [], 'lnk_source': None, 'owner': 'BUILTIN\\Administrators'})
+changed: [10.106.192.74] => (item={'path': 'C:\\Temp\\certs\\hs_root_certificates-master\\certs\\DRHSCsubCA-new.pem', 'extension': '.pem', 'filename': 'DRHSCsubCA-new.pem', 'creationtime': 1775573288.7212756, 'checksum': 'aca162a05ec7c215232baaf5c99e79aa0dd29bcc', 'size': 1872, 'isreadonly': False, 'attributes': 'Archive', 'lastaccesstime': 1775573288.7212756, 'isreg': True, 'isjunction': False, 'islnk': False, 'isarchive': True, 'lastwritetime': 1725538992, 'nlink': 1, 'isshared': False, 'ishidden': False, 'exists': True, 'isdir': False, 'lnk_target': None, 'sharename': None, 'hlnk_targets': [], 'lnk_source': None, 'owner': 'BUILTIN\\Administrators'})
+changed: [10.106.194.252] => (item={'path': 'C:\\Temp\\certs\\hs_root_certificates-master\\certs\\DRHSCsubCA-new.pem', 'extension': '.pem', 'filename': 'DRHSCsubCA-new.pem', 'creationtime': 1775573288.7612, 'checksum': 'aca162a05ec7c215232baaf5c99e79aa0dd29bcc', 'size': 1872, 'isreadonly': False, 'attributes': 'Archive', 'lastaccesstime': 1775573288.7612, 'isreg': True, 'isjunction': False, 'islnk': False, 'isarchive': True, 'lastwritetime': 1725538992, 'nlink': 1, 'isshared': False, 'ishidden': False, 'exists': True, 'isdir': False, 'lnk_target': None, 'sharename': None, 'hlnk_targets': [], 'lnk_source': None, 'owner': 'BUILTIN\\Administrators'})
+changed: [10.106.192.74] => (item={'path': 'C:\\Temp\\certs\\hs_root_certificates-master\\certs\\DRHSEsubCA.pem', 'extension': '.pem', 'filename': 'DRHSEsubCA.pem', 'creationtime': 1775573288.7212756, 'checksum': 'be7071a6e722ff30812819fac4cb0d5241e3a552', 'size': 2248, 'isreadonly': False, 'attributes': 'Archive', 'lastaccesstime': 1775573288.7212756, 'isreg': True, 'isjunction': False, 'islnk': False, 'isarchive': True, 'lastwritetime': 1725553074, 'nlink': 1, 'isshared': False, 'ishidden': False, 'exists': True, 'isdir': False, 'lnk_target': None, 'sharename': None, 'hlnk_targets': [], 'lnk_source': None, 'owner': 'BUILTIN\\Administrators'})
+changed: [10.106.194.252] => (item={'path': 'C:\\Temp\\certs\\hs_root_certificates-master\\certs\\DRHSEsubCA.pem', 'extension': '.pem', 'filename': 'DRHSEsubCA.pem', 'creationtime': 1775573288.7617283, 'checksum': 'be7071a6e722ff30812819fac4cb0d5241e3a552', 'size': 2248, 'isreadonly': False, 'attributes': 'Archive', 'lastaccesstime': 1775573288.762259, 'isreg': True, 'isjunction': False, 'islnk': False, 'isarchive': True, 'lastwritetime': 1725553074, 'nlink': 1, 'isshared': False, 'ishidden': False, 'exists': True, 'isdir': False, 'lnk_target': None, 'sharename': None, 'hlnk_targets': [], 'lnk_source': None, 'owner': 'BUILTIN\\Administrators'})
+changed: [10.106.192.74] => (item={'path': 'C:\\Temp\\certs\\hs_root_certificates-master\\certs\\DRHSEsubCA-new.pem', 'extension': '.pem', 'filename': 'DRHSEsubCA-new.pem', 'creationtime': 1775573288.7212756, 'checksum': 'a97b157fb3fb9c61c05c799cf96df4450fdd611a', 'size': 1880, 'isreadonly': False, 'attributes': 'Archive', 'lastaccesstime': 1775573288.7212756, 'isreg': True, 'isjunction': False, 'islnk': False, 'isarchive': True, 'lastwritetime': 1725538992, 'nlink': 1, 'isshared': False, 'ishidden': False, 'exists': True, 'isdir': False, 'lnk_target': None, 'sharename': None, 'hlnk_targets': [], 'lnk_source': None, 'owner': 'BUILTIN\\Administrators'})
+changed: [10.106.194.252] => (item={'path': 'C:\\Temp\\certs\\hs_root_certificates-master\\certs\\DRHSEsubCA-new.pem', 'extension': '.pem', 'filename': 'DRHSEsubCA-new.pem', 'creationtime': 1775573288.7627888, 'checksum': 'a97b157fb3fb9c61c05c799cf96df4450fdd611a', 'size': 1880, 'isreadonly': False, 'attributes': 'Archive', 'lastaccesstime': 1775573288.763313, 'isreg': True, 'isjunction': False, 'islnk': False, 'isarchive': True, 'lastwritetime': 1725538992, 'nlink': 1, 'isshared': False, 'ishidden': False, 'exists': True, 'isdir': False, 'lnk_target': None, 'sharename': None, 'hlnk_targets': [], 'lnk_source': None, 'owner': 'BUILTIN\\Administrators'})
+changed: [10.106.192.74] => (item={'path': 'C:\\Temp\\certs\\hs_root_certificates-master\\certs\\DRHSMsubCA.pem', 'extension': '.pem', 'filename': 'DRHSMsubCA.pem', 'creationtime': 1775573288.7212756, 'checksum': 'b95905e9bda7119298f85ba00a013fb4210a03da', 'size': 2230, 'isreadonly': False, 'attributes': 'Archive', 'lastaccesstime': 1775573288.7212756, 'isreg': True, 'isjunction': False, 'islnk': False, 'isarchive': True, 'lastwritetime': 1725553116, 'nlink': 1, 'isshared': False, 'ishidden': False, 'exists': True, 'isdir': False, 'lnk_target': None, 'sharename': None, 'hlnk_targets': [], 'lnk_source': None, 'owner': 'BUILTIN\\Administrators'})
+changed: [10.106.194.252] => (item={'path': 'C:\\Temp\\certs\\hs_root_certificates-master\\certs\\DRHSMsubCA.pem', 'extension': '.pem', 'filename': 'DRHSMsubCA.pem', 'creationtime': 1775573288.7638416, 'checksum': 'b95905e9bda7119298f85ba00a013fb4210a03da', 'size': 2230, 'isreadonly': False, 'attributes': 'Archive', 'lastaccesstime': 1775573288.7638416, 'isreg': True, 'isjunction': False, 'islnk': False, 'isarchive': True, 'lastwritetime': 1725553116, 'nlink': 1, 'isshared': False, 'ishidden': False, 'exists': True, 'isdir': False, 'lnk_target': None, 'sharename': None, 'hlnk_targets': [], 'lnk_source': None, 'owner': 'BUILTIN\\Administrators'})
+changed: [10.106.192.74] => (item={'path': 'C:\\Temp\\certs\\hs_root_certificates-master\\certs\\DRHSMsubCA-new.pem', 'extension': '.pem', 'filename': 'DRHSMsubCA-new.pem', 'creationtime': 1775573288.7212756, 'checksum': '9916ef567b7ddcede626aac3c6d9212b0ec1e528', 'size': 1868, 'isreadonly': False, 'attributes': 'Archive', 'lastaccesstime': 1775573288.7212756, 'isreg': True, 'isjunction': False, 'islnk': False, 'isarchive': True, 'lastwritetime': 1725538992, 'nlink': 1, 'isshared': False, 'ishidden': False, 'exists': True, 'isdir': False, 'lnk_target': None, 'sharename': None, 'hlnk_targets': [], 'lnk_source': None, 'owner': 'BUILTIN\\Administrators'})
+changed: [10.106.194.252] => (item={'path': 'C:\\Temp\\certs\\hs_root_certificates-master\\certs\\DRHSMsubCA-new.pem', 'extension': '.pem', 'filename': 'DRHSMsubCA-new.pem', 'creationtime': 1775573288.7643695, 'checksum': '9916ef567b7ddcede626aac3c6d9212b0ec1e528', 'size': 1868, 'isreadonly': False, 'attributes': 'Archive', 'lastaccesstime': 1775573288.7643695, 'isreg': True, 'isjunction': False, 'islnk': False, 'isarchive': True, 'lastwritetime': 1725538992, 'nlink': 1, 'isshared': False, 'ishidden': False, 'exists': True, 'isdir': False, 'lnk_target': None, 'sharename': None, 'hlnk_targets': [], 'lnk_source': None, 'owner': 'BUILTIN\\Administrators'})
+changed: [10.106.192.74] => (item={'path': 'C:\\Temp\\certs\\hs_root_certificates-master\\certs\\hitsubca.pem', 'extension': '.pem', 'filename': 'hitsubca.pem', 'creationtime': 1775573288.7212756, 'checksum': '27e5114dc5aee6feb08ad07df4ae0b0d19680382', 'size': 2230, 'isreadonly': False, 'attributes': 'Archive', 'lastaccesstime': 1775573288.7212756, 'isreg': True, 'isjunction': False, 'islnk': False, 'isarchive': True, 'lastwritetime': 1725541932, 'nlink': 1, 'isshared': False, 'ishidden': False, 'exists': True, 'isdir': False, 'lnk_target': None, 'sharename': None, 'hlnk_targets': [], 'lnk_source': None, 'owner': 'BUILTIN\\Administrators'})
+changed: [10.106.194.252] => (item={'path': 'C:\\Temp\\certs\\hs_root_certificates-master\\certs\\hitsubca.pem', 'extension': '.pem', 'filename': 'hitsubca.pem', 'creationtime': 1775573288.7648976, 'checksum': '27e5114dc5aee6feb08ad07df4ae0b0d19680382', 'size': 2230, 'isreadonly': False, 'attributes': 'Archive', 'lastaccesstime': 1775573288.7654257, 'isreg': True, 'isjunction': False, 'islnk': False, 'isarchive': True, 'lastwritetime': 1725541932, 'nlink': 1, 'isshared': False, 'ishidden': False, 'exists': True, 'isdir': False, 'lnk_target': None, 'sharename': None, 'hlnk_targets': [], 'lnk_source': None, 'owner': 'BUILTIN\\Administrators'})
+changed: [10.106.192.74] => (item={'path': 'C:\\Temp\\certs\\hs_root_certificates-master\\certs\\hscsubca.pem', 'extension': '.pem', 'filename': 'hscsubca.pem', 'creationtime': 1775573288.7212756, 'checksum': '6a1f5448ba14b68b8207c4ae9091babc8922a47f', 'size': 2240, 'isreadonly': False, 'attributes': 'Archive', 'lastaccesstime': 1775573288.7212756, 'isreg': True, 'isjunction': False, 'islnk': False, 'isarchive': True, 'lastwritetime': 1725541932, 'nlink': 1, 'isshared': False, 'ishidden': False, 'exists': True, 'isdir': False, 'lnk_target': None, 'sharename': None, 'hlnk_targets': [], 'lnk_source': None, 'owner': 'BUILTIN\\Administrators'})
+changed: [10.106.194.252] => (item={'path': 'C:\\Temp\\certs\\hs_root_certificates-master\\certs\\hscsubca.pem', 'extension': '.pem', 'filename': 'hscsubca.pem', 'creationtime': 1775573288.7654257, 'checksum': '6a1f5448ba14b68b8207c4ae9091babc8922a47f', 'size': 2240, 'isreadonly': False, 'attributes': 'Archive', 'lastaccesstime': 1775573288.765954, 'isreg': True, 'isjunction': False, 'islnk': False, 'isarchive': True, 'lastwritetime': 1725541932, 'nlink': 1, 'isshared': False, 'ishidden': False, 'exists': True, 'isdir': False, 'lnk_target': None, 'sharename': None, 'hlnk_targets': [], 'lnk_source': None, 'owner': 'BUILTIN\\Administrators'})
+changed: [10.106.192.74] => (item={'path': 'C:\\Temp\\certs\\hs_root_certificates-master\\certs\\hscsubca-new.pem', 'extension': '.pem', 'filename': 'hscsubca-new.pem', 'creationtime': 1775573288.7212756, 'checksum': 'cf8ac2ff9a02a4b5f353d2ee4253ec21be38d264', 'size': 1876, 'isreadonly': False, 'attributes': 'Archive', 'lastaccesstime': 1775573288.7212756, 'isreg': True, 'isjunction': False, 'islnk': False, 'isarchive': True, 'lastwritetime': 1725538992, 'nlink': 1, 'isshared': False, 'ishidden': False, 'exists': True, 'isdir': False, 'lnk_target': None, 'sharename': None, 'hlnk_targets': [], 'lnk_source': None, 'owner': 'BUILTIN\\Administrators'})
+changed: [10.106.194.252] => (item={'path': 'C:\\Temp\\certs\\hs_root_certificates-master\\certs\\hscsubca-new.pem', 'extension': '.pem', 'filename': 'hscsubca-new.pem', 'creationtime': 1775573288.765954, 'checksum': 'cf8ac2ff9a02a4b5f353d2ee4253ec21be38d264', 'size': 1876, 'isreadonly': False, 'attributes': 'Archive', 'lastaccesstime': 1775573288.7664814, 'isreg': True, 'isjunction': False, 'islnk': False, 'isarchive': True, 'lastwritetime': 1725538992, 'nlink': 1, 'isshared': False, 'ishidden': False, 'exists': True, 'isdir': False, 'lnk_target': None, 'sharename': None, 'hlnk_targets': [], 'lnk_source': None, 'owner': 'BUILTIN\\Administrators'})
+changed: [10.106.192.74] => (item={'path': 'C:\\Temp\\certs\\hs_root_certificates-master\\certs\\hsesubca.pem', 'extension': '.pem', 'filename': 'hsesubca.pem', 'creationtime': 1775573288.7212756, 'checksum': '98e512a0a3fdbf44eeee76197a523a39b8dac29e', 'size': 2248, 'isreadonly': False, 'attributes': 'Archive', 'lastaccesstime': 1775573288.7212756, 'isreg': True, 'isjunction': False, 'islnk': False, 'isarchive': True, 'lastwritetime': 1725541932, 'nlink': 1, 'isshared': False, 'ishidden': False, 'exists': True, 'isdir': False, 'lnk_target': None, 'sharename': None, 'hlnk_targets': [], 'lnk_source': None, 'owner': 'BUILTIN\\Administrators'})
+changed: [10.106.192.74] => (item={'path': 'C:\\Temp\\certs\\hs_root_certificates-master\\certs\\hsesubca-new.pem', 'extension': '.pem', 'filename': 'hsesubca-new.pem', 'creationtime': 1775573288.7212756, 'checksum': '6df630a1cb57b254c75183f7ed38602b852c742c', 'size': 1880, 'isreadonly': False, 'attributes': 'Archive', 'lastaccesstime': 1775573288.7212756, 'isreg': True, 'isjunction': False, 'islnk': False, 'isarchive': True, 'lastwritetime': 1725538992, 'nlink': 1, 'isshared': False, 'ishidden': False, 'exists': True, 'isdir': False, 'lnk_target': None, 'sharename': None, 'hlnk_targets': [], 'lnk_source': None, 'owner': 'BUILTIN\\Administrators'})
+changed: [10.106.194.252] => (item={'path': 'C:\\Temp\\certs\\hs_root_certificates-master\\certs\\hsesubca.pem', 'extension': '.pem', 'filename': 'hsesubca.pem', 'creationtime': 1775573288.7664814, 'checksum': '98e512a0a3fdbf44eeee76197a523a39b8dac29e', 'size': 2248, 'isreadonly': False, 'attributes': 'Archive', 'lastaccesstime': 1775573288.7670112, 'isreg': True, 'isjunction': False, 'islnk': False, 'isarchive': True, 'lastwritetime': 1725541932, 'nlink': 1, 'isshared': False, 'ishidden': False, 'exists': True, 'isdir': False, 'lnk_target': None, 'sharename': None, 'hlnk_targets': [], 'lnk_source': None, 'owner': 'BUILTIN\\Administrators'})
+changed: [10.106.192.74] => (item={'path': 'C:\\Temp\\certs\\hs_root_certificates-master\\certs\\hsmsubca.pem', 'extension': '.pem', 'filename': 'hsmsubca.pem', 'creationtime': 1775573288.7212756, 'checksum': 'e0082dd041035be5c2a0b7619496acdd36db04f0', 'size': 2234, 'isreadonly': False, 'attributes': 'Archive', 'lastaccesstime': 1775573288.7212756, 'isreg': True, 'isjunction': False, 'islnk': False, 'isarchive': True, 'lastwritetime': 1725541932, 'nlink': 1, 'isshared': False, 'ishidden': False, 'exists': True, 'isdir': False, 'lnk_target': None, 'sharename': None, 'hlnk_targets': [], 'lnk_source': None, 'owner': 'BUILTIN\\Administrators'})
+changed: [10.106.194.252] => (item={'path': 'C:\\Temp\\certs\\hs_root_certificates-master\\certs\\hsesubca-new.pem', 'extension': '.pem', 'filename': 'hsesubca-new.pem', 'creationtime': 1775573288.7675405, 'checksum': '6df630a1cb57b254c75183f7ed38602b852c742c', 'size': 1880, 'isreadonly': False, 'attributes': 'Archive', 'lastaccesstime': 1775573288.7675405, 'isreg': True, 'isjunction': False, 'islnk': False, 'isarchive': True, 'lastwritetime': 1725538992, 'nlink': 1, 'isshared': False, 'ishidden': False, 'exists': True, 'isdir': False, 'lnk_target': None, 'sharename': None, 'hlnk_targets': [], 'lnk_source': None, 'owner': 'BUILTIN\\Administrators'})
+changed: [10.106.192.74] => (item={'path': 'C:\\Temp\\certs\\hs_root_certificates-master\\certs\\hsmsubca-new.pem', 'extension': '.pem', 'filename': 'hsmsubca-new.pem', 'creationtime': 1775573288.7212756, 'checksum': '7d7cdcff30787b31e73001774ecd08e279e3027c', 'size': 1868, 'isreadonly': False, 'attributes': 'Archive', 'lastaccesstime': 1775573288.7212756, 'isreg': True, 'isjunction': False, 'islnk': False, 'isarchive': True, 'lastwritetime': 1725538992, 'nlink': 1, 'isshared': False, 'ishidden': False, 'exists': True, 'isdir': False, 'lnk_target': None, 'sharename': None, 'hlnk_targets': [], 'lnk_source': None, 'owner': 'BUILTIN\\Administrators'})
+changed: [10.106.194.252] => (item={'path': 'C:\\Temp\\certs\\hs_root_certificates-master\\certs\\hsmsubca.pem', 'extension': '.pem', 'filename': 'hsmsubca.pem', 'creationtime': 1775573288.7680697, 'checksum': 'e0082dd041035be5c2a0b7619496acdd36db04f0', 'size': 2234, 'isreadonly': False, 'attributes': 'Archive', 'lastaccesstime': 1775573288.7680697, 'isreg': True, 'isjunction': False, 'islnk': False, 'isarchive': True, 'lastwritetime': 1725541932, 'nlink': 1, 'isshared': False, 'ishidden': False, 'exists': True, 'isdir': False, 'lnk_target': None, 'sharename': None, 'hlnk_targets': [], 'lnk_source': None, 'owner': 'BUILTIN\\Administrators'})
+ok: [10.106.192.74] => (item={'path': 'C:\\Temp\\certs\\hs_root_certificates-master\\certs\\hstsubca.pem', 'extension': '.pem', 'filename': 'hstsubca.pem', 'creationtime': 1775573288.7212756, 'checksum': '7c29b49dec38c7e8f5a7eabe47b7d0a5ee6793e8', 'size': 2234, 'isreadonly': False, 'attributes': 'Archive', 'lastaccesstime': 1775573288.7212756, 'isreg': True, 'isjunction': False, 'islnk': False, 'isarchive': True, 'lastwritetime': 1725541932, 'nlink': 1, 'isshared': False, 'ishidden': False, 'exists': True, 'isdir': False, 'lnk_target': None, 'sharename': None, 'hlnk_targets': [], 'lnk_source': None, 'owner': 'BUILTIN\\Administrators'})
+changed: [10.106.194.252] => (item={'path': 'C:\\Temp\\certs\\hs_root_certificates-master\\certs\\hsmsubca-new.pem', 'extension': '.pem', 'filename': 'hsmsubca-new.pem', 'creationtime': 1775573288.7685971, 'checksum': '7d7cdcff30787b31e73001774ecd08e279e3027c', 'size': 1868, 'isreadonly': False, 'attributes': 'Archive', 'lastaccesstime': 1775573288.7685971, 'isreg': True, 'isjunction': False, 'islnk': False, 'isarchive': True, 'lastwritetime': 1725538992, 'nlink': 1, 'isshared': False, 'ishidden': False, 'exists': True, 'isdir': False, 'lnk_target': None, 'sharename': None, 'hlnk_targets': [], 'lnk_source': None, 'owner': 'BUILTIN\\Administrators'})
+ok: [10.106.192.74] => (item={'path': 'C:\\Temp\\certs\\hs_root_certificates-master\\certs\\hstsubca-new.pem', 'extension': '.pem', 'filename': 'hstsubca-new.pem', 'creationtime': 1775573288.7212756, 'checksum': 'e6adb15e13d0f3e5d7eba446e50066dfa3455cdf', 'size': 1868, 'isreadonly': False, 'attributes': 'Archive', 'lastaccesstime': 1775573288.7212756, 'isreg': True, 'isjunction': False, 'islnk': False, 'isarchive': True, 'lastwritetime': 1725538992, 'nlink': 1, 'isshared': False, 'ishidden': False, 'exists': True, 'isdir': False, 'lnk_target': None, 'sharename': None, 'hlnk_targets': [], 'lnk_source': None, 'owner': 'BUILTIN\\Administrators'})
+ok: [10.106.194.252] => (item={'path': 'C:\\Temp\\certs\\hs_root_certificates-master\\certs\\hstsubca.pem', 'extension': '.pem', 'filename': 'hstsubca.pem', 'creationtime': 1775573288.7691274, 'checksum': '7c29b49dec38c7e8f5a7eabe47b7d0a5ee6793e8', 'size': 2234, 'isreadonly': False, 'attributes': 'Archive', 'lastaccesstime': 1775573288.7691274, 'isreg': True, 'isjunction': False, 'islnk': False, 'isarchive': True, 'lastwritetime': 1725541932, 'nlink': 1, 'isshared': False, 'ishidden': False, 'exists': True, 'isdir': False, 'lnk_target': None, 'sharename': None, 'hlnk_targets': [], 'lnk_source': None, 'owner': 'BUILTIN\\Administrators'})
+ok: [10.106.192.74] => (item={'path': 'C:\\Temp\\certs\\hs_root_certificates-master\\certs\\rootca.pem', 'extension': '.pem', 'filename': 'rootca.pem', 'creationtime': 1775573288.7212756, 'checksum': '3224c6cc2d01ed51c1d4097ed33655c2818cc6e2', 'size': 1852, 'isreadonly': False, 'attributes': 'Archive', 'lastaccesstime': 1775573288.7212756, 'isreg': True, 'isjunction': False, 'islnk': False, 'isarchive': True, 'lastwritetime': 1725541932, 'nlink': 1, 'isshared': False, 'ishidden': False, 'exists': True, 'isdir': False, 'lnk_target': None, 'sharename': None, 'hlnk_targets': [], 'lnk_source': None, 'owner': 'BUILTIN\\Administrators'})
+ok: [10.106.194.252] => (item={'path': 'C:\\Temp\\certs\\hs_root_certificates-master\\certs\\hstsubca-new.pem', 'extension': '.pem', 'filename': 'hstsubca-new.pem', 'creationtime': 1775573288.7696552, 'checksum': 'e6adb15e13d0f3e5d7eba446e50066dfa3455cdf', 'size': 1868, 'isreadonly': False, 'attributes': 'Archive', 'lastaccesstime': 1775573288.7701814, 'isreg': True, 'isjunction': False, 'islnk': False, 'isarchive': True, 'lastwritetime': 1725538992, 'nlink': 1, 'isshared': False, 'ishidden': False, 'exists': True, 'isdir': False, 'lnk_target': None, 'sharename': None, 'hlnk_targets': [], 'lnk_source': None, 'owner': 'BUILTIN\\Administrators'})
+ok: [10.106.192.74] => (item={'path': 'C:\\Temp\\certs\\hs_root_certificates-master\\certs\\rootca-new.pem', 'extension': '.pem', 'filename': 'rootca-new.pem', 'creationtime': 1775573288.7212756, 'checksum': '88d7f6799bd9ed677b21e452f70e077793f5440f', 'size': 1360, 'isreadonly': False, 'attributes': 'Archive', 'lastaccesstime': 1775573288.7212756, 'isreg': True, 'isjunction': False, 'islnk': False, 'isarchive': True, 'lastwritetime': 1725538992, 'nlink': 1, 'isshared': False, 'ishidden': False, 'exists': True, 'isdir': False, 'lnk_target': None, 'sharename': None, 'hlnk_targets': [], 'lnk_source': None, 'owner': 'BUILTIN\\Administrators'})
+ok: [10.106.194.252] => (item={'path': 'C:\\Temp\\certs\\hs_root_certificates-master\\certs\\rootca.pem', 'extension': '.pem', 'filename': 'rootca.pem', 'creationtime': 1775573288.7707262, 'checksum': '3224c6cc2d01ed51c1d4097ed33655c2818cc6e2', 'size': 1852, 'isreadonly': False, 'attributes': 'Archive', 'lastaccesstime': 1775573288.7707262, 'isreg': True, 'isjunction': False, 'islnk': False, 'isarchive': True, 'lastwritetime': 1725541932, 'nlink': 1, 'isshared': False, 'ishidden': False, 'exists': True, 'isdir': False, 'lnk_target': None, 'sharename': None, 'hlnk_targets': [], 'lnk_source': None, 'owner': 'BUILTIN\\Administrators'})
+ok: [10.106.194.252] => (item={'path': 'C:\\Temp\\certs\\hs_root_certificates-master\\certs\\rootca-new.pem', 'extension': '.pem', 'filename': 'rootca-new.pem', 'creationtime': 1775573288.7712643, 'checksum': '88d7f6799bd9ed677b21e452f70e077793f5440f', 'size': 1360, 'isreadonly': False, 'attributes': 'Archive', 'lastaccesstime': 1775573288.7712643, 'isreg': True, 'isjunction': False, 'islnk': False, 'isarchive': True, 'lastwritetime': 1725538992, 'nlink': 1, 'isshared': False, 'ishidden': False, 'exists': True, 'isdir': False, 'lnk_target': None, 'sharename': None, 'hlnk_targets': [], 'lnk_source': None, 'owner': 'BUILTIN\\Administrators'})
+
+TASK [hs_role_base_Windows : Load root certficates files] **********************
+ok: [10.106.192.74]
+ok: [10.106.194.252]
+
+TASK [hs_role_base_Windows : Import root certificates] *************************
+ok: [10.106.192.74] => (item={'path': 'C:\\Temp\\certs\\hs_root_certificates-master\\certs\\rootca.pem', 'extension': '.pem', 'filename': 'rootca.pem', 'creationtime': 1775573288.7212756, 'checksum': '3224c6cc2d01ed51c1d4097ed33655c2818cc6e2', 'size': 1852, 'isreadonly': False, 'attributes': 'Archive', 'lastaccesstime': 1775573288.7212756, 'isreg': True, 'isjunction': False, 'islnk': False, 'isarchive': True, 'lastwritetime': 1725541932, 'nlink': 1, 'isshared': False, 'ishidden': False, 'exists': True, 'isdir': False, 'lnk_target': None, 'sharename': None, 'hlnk_targets': [], 'lnk_source': None, 'owner': 'BUILTIN\\Administrators'})
+ok: [10.106.194.252] => (item={'path': 'C:\\Temp\\certs\\hs_root_certificates-master\\certs\\rootca.pem', 'extension': '.pem', 'filename': 'rootca.pem', 'creationtime': 1775573288.7707262, 'checksum': '3224c6cc2d01ed51c1d4097ed33655c2818cc6e2', 'size': 1852, 'isreadonly': False, 'attributes': 'Archive', 'lastaccesstime': 1775573288.7707262, 'isreg': True, 'isjunction': False, 'islnk': False, 'isarchive': True, 'lastwritetime': 1725541932, 'nlink': 1, 'isshared': False, 'ishidden': False, 'exists': True, 'isdir': False, 'lnk_target': None, 'sharename': None, 'hlnk_targets': [], 'lnk_source': None, 'owner': 'BUILTIN\\Administrators'})
+ok: [10.106.192.74] => (item={'path': 'C:\\Temp\\certs\\hs_root_certificates-master\\certs\\rootca-new.pem', 'extension': '.pem', 'filename': 'rootca-new.pem', 'creationtime': 1775573288.7212756, 'checksum': '88d7f6799bd9ed677b21e452f70e077793f5440f', 'size': 1360, 'isreadonly': False, 'attributes': 'Archive', 'lastaccesstime': 1775573288.7212756, 'isreg': True, 'isjunction': False, 'islnk': False, 'isarchive': True, 'lastwritetime': 1725538992, 'nlink': 1, 'isshared': False, 'ishidden': False, 'exists': True, 'isdir': False, 'lnk_target': None, 'sharename': None, 'hlnk_targets': [], 'lnk_source': None, 'owner': 'BUILTIN\\Administrators'})
+ok: [10.106.194.252] => (item={'path': 'C:\\Temp\\certs\\hs_root_certificates-master\\certs\\rootca-new.pem', 'extension': '.pem', 'filename': 'rootca-new.pem', 'creationtime': 1775573288.7712643, 'checksum': '88d7f6799bd9ed677b21e452f70e077793f5440f', 'size': 1360, 'isreadonly': False, 'attributes': 'Archive', 'lastaccesstime': 1775573288.7712643, 'isreg': True, 'isjunction': False, 'islnk': False, 'isarchive': True, 'lastwritetime': 1725538992, 'nlink': 1, 'isshared': False, 'ishidden': False, 'exists': True, 'isdir': False, 'lnk_target': None, 'sharename': None, 'hlnk_targets': [], 'lnk_source': None, 'owner': 'BUILTIN\\Administrators'})
+
+TASK [hs_role_base_Windows : Add DSC module for Networking] ********************
+changed: [10.106.192.74]
+changed: [10.106.194.252]
+
+TASK [hs_role_base_Windows : Disable firewall for all profiles] ****************
+ok: [10.106.192.74] => (item=Public)
+ok: [10.106.194.252] => (item=Public)
+ok: [10.106.192.74] => (item=Private)
+ok: [10.106.194.252] => (item=Private)
+ok: [10.106.192.74] => (item=Domain)
+ok: [10.106.194.252] => (item=Domain)
+
+TASK [hs_role_base_Windows : Disable directory cache lifetime] *****************
+changed: [10.106.192.74]
+changed: [10.106.194.252]
+
+TASK [hs_role_base_Windows : Set timezone info] ********************************
+changed: [10.106.192.74]
+changed: [10.106.194.252]
+
+TASK [hs_role_base_Windows : Set dns suffix] ***********************************
+changed: [10.106.192.74]
+changed: [10.106.194.252]
+
+TASK [hs_role_base_Windows : Check if CSFalconService exists] ******************
+ok: [10.106.192.74]
+ok: [10.106.194.252]
+
+TASK [hs_role_base_Windows : Create directory structure for CrowdStrike Logging Exe] ***
+changed: [10.106.192.74]
+changed: [10.106.194.252]
+
+TASK [hs_role_base_Windows : Open a website using certificate "DigiCert High Assurane EV Root CA" so it is loaded in the "trusted authorities" store] ***
+fatal: [10.106.192.74]: FAILED! => {"cache_control": "no-store, no-cache, must-revalidate", "changed": false, "character_set": "utf-8", "connection": "keep-alive", "content_encoding": "", "content_length": "64", "content_type": "text/html; charset=utf-8", "cookies": [], "date": "Tue, 07 Apr 2026 14:49:07 GMT", "elapsed": 0, "expect_ct": "max-age=30", "front_end_https": "on", "headers": ["Connection", "Strict-Transport-Security", "Expect-CT", "X-Content-Type-Options", "X-XSS-Protection", "X-Frame-Options", "Front-End-Https", "Content-Length", "Cache-Control", "Content-Type", "Date", "Location"], "is_from_cache": false, "is_mutually_authenticated": false, "last_modified": "2026-04-07T14:49:07.6851060+00:00", "location": "https://falcon.us-2.crowdstrike.com/login", "method": "GET", "msg": "Status code of request '302' is not in list of valid status codes 200 : Redirect'.", "protocol_version": {"Build": -1, "Major": 1, "MajorRevision": -1, "Minor": 1, "MinorRevision": -1, "Revision": -1}, "response_uri": "https://falcon.us-2.crowdstrike.com/", "server": "", "status_code": 302, "status_description": "Found", "strict_transport_security": "max-age=31536000; includeSubDomains", "supports_headers": true, "url": "https://falcon.us-2.crowdstrike.com/", "x_content_type_options": "nosniff", "x_frame_options": "SAMEORIGIN", "xxss_protection": "0"}
+...ignoring
+fatal: [10.106.194.252]: FAILED! => {"cache_control": "no-store, no-cache, must-revalidate", "changed": false, "character_set": "utf-8", "connection": "keep-alive", "content_encoding": "", "content_length": "64", "content_type": "text/html; charset=utf-8", "cookies": [], "date": "Tue, 07 Apr 2026 14:49:07 GMT", "elapsed": 0, "expect_ct": "max-age=30", "front_end_https": "on", "headers": ["Connection", "Strict-Transport-Security", "Expect-CT", "X-Content-Type-Options", "X-XSS-Protection", "X-Frame-Options", "Front-End-Https", "Content-Length", "Cache-Control", "Content-Type", "Date", "Location"], "is_from_cache": false, "is_mutually_authenticated": false, "last_modified": "2026-04-07T14:49:07.7642608+00:00", "location": "https://falcon.us-2.crowdstrike.com/login", "method": "GET", "msg": "Status code of request '302' is not in list of valid status codes 200 : Redirect'.", "protocol_version": {"Build": -1, "Major": 1, "MajorRevision": -1, "Minor": 1, "MinorRevision": -1, "Revision": -1}, "response_uri": "https://falcon.us-2.crowdstrike.com/", "server": "", "status_code": 302, "status_description": "Found", "strict_transport_security": "max-age=31536000; includeSubDomains", "supports_headers": true, "url": "https://falcon.us-2.crowdstrike.com/", "x_content_type_options": "nosniff", "x_frame_options": "SAMEORIGIN", "xxss_protection": "0"}
+...ignoring
+
+TASK [hs_role_base_Windows : Download Crowdstrike] *****************************
+changed: [10.106.192.74]
+changed: [10.106.194.252]
+
+TASK [hs_role_base_Windows : Set Additional Windows Install Args (optional)] ***
+ok: [10.106.192.74]
+ok: [10.106.194.252]
+
+TASK [hs_role_base_Windows : CrowdStrike Falcon | Install Falcon Sensor .exe Package (Windows)] ***
+changed: [10.106.192.74]
+changed: [10.106.194.252]
+
+TASK [hs_role_base_Windows : Remove CS Binary] *********************************
+changed: [10.106.192.74]
+changed: [10.106.194.252]
+
+TASK [hs_role_base_Windows : Download CrowdStrike Logging exe] *****************
+changed: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_base_Windows : Install list of packages] *************************
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_base_Windows/tasks/package_installer_template.yml for 10.106.192.74, 10.106.194.252 => (item=sysinternals)
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_base_Windows/tasks/package_installer_template.yml for 10.106.192.74, 10.106.194.252 => (item=git)
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_base_Windows/tasks/package_installer_template.yml for 10.106.192.74, 10.106.194.252 => (item=python)
+
+TASK [hs_role_base_Windows : Executing 'sysinternals' installer state 'present'] ***
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_base_Windows : Executing 'sysinternals' package file removal] ****
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_base_Windows : Check 'sysinternals' installer state 'present'] ***
+ok: [10.106.194.252]
+ok: [10.106.192.74]
+
+TASK [hs_role_base_Windows : Download 'sysinternals' installer state 'present'] ***
+changed: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_base_Windows : Unzip 'sysinternals' installer state 'present'] ***
+changed: [10.106.192.74]
+changed: [10.106.194.252]
+
+TASK [hs_role_base_Windows : Executing 'git' installer state 'skip'] ***********
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_base_Windows : Executing 'git' package file removal] *************
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_base_Windows : Check 'git' installer state 'skip'] ***************
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_base_Windows : Download 'git' installer state 'skip'] ************
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_base_Windows : Unzip 'git' installer state 'skip'] ***************
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_base_Windows : Executing 'python' installer state 'skip'] ********
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_base_Windows : Executing 'python' package file removal] **********
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_base_Windows : Check 'python' installer state 'skip'] ************
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_base_Windows : Download 'python' installer state 'skip'] *********
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_base_Windows : Unzip 'python' installer state 'skip'] ************
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_base_Windows : Gather Facts to find system vendor] ***************
+ok: [10.106.194.252]
+ok: [10.106.192.74]
+
+TASK [hs_role_base_Windows : Set Darktrace presence to skip if VMware] *********
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_base_Windows : Check if osSensor config file already exists] *****
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_base_Windows : Resolving darktrace vsensor ip] *******************
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_base_Windows : Executing osSensor installer] *********************
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_base_Windows : Set osSensor config file] *************************
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_base_Windows : Create 'ntrights' directory] **********************
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_base_Windows : Download 'ntrights' executables] ******************
+skipping: [10.106.192.74] => (item=accesschk.exe) 
+skipping: [10.106.192.74] => (item=ntrights.exe) 
+skipping: [10.106.194.252] => (item=accesschk.exe) 
+skipping: [10.106.194.252] => (item=ntrights.exe) 
+
+TASK [hs_role_base_Windows : Add 'C:\Program Files\ntrights\' in PATH] *********
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_base_Windows : Executing LAPS installer] *************************
+changed: [10.106.192.74]
+changed: [10.106.194.252]
+
+TASK [hs_role_base_Windows : Check current memory for powershell] **************
+ok: [10.106.194.252]
+ok: [10.106.192.74]
+
+TASK [hs_role_base_Windows : Set the current memory for powershell to 1024] ****
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_base_Windows : Activate Windows] *********************************
+ok: [10.106.194.252]
+ok: [10.106.192.74]
+
+TASK [Set fact first_node yes if server has tag mssql_cluster_node_1] **********
+ok: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [Get instance data] *******************************************************
+ok: [10.106.194.252 -> localhost]
+ok: [10.106.192.74 -> localhost]
+
+TASK [Get AMI image name] ******************************************************
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [Convert SQL License for std and ent] *************************************
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [Load hs_role_mssql_cluster] **********************************************
+
+TASK [hs_role_mssql_cluster : Add "service-ansible-ad@hedgeservtest.com" to local administrators] ***
+changed: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Load database config] ****************************
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/load_database_config.yml for 10.106.192.74, 10.106.194.252
+
+TASK [hs_role_mssql_cluster : Fail if db_config_file variable is missing] ******
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Include database information] ********************
+ok: [10.106.192.74]
+ok: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Cluster Config Map] ******************************
+ok: [10.106.192.74]
+ok: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Set fact for db config] **************************
+ok: [10.106.192.74]
+ok: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Fail on missing db_slots in the config file] *****
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Set fact for default tags] ***********************
+ok: [10.106.192.74]
+ok: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Set Metricbeat Secrets] **************************
+ok: [10.106.194.252]
+ok: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Register Passive Node License Exemption] *********
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/register_license_exemption.yml for 10.106.192.74, 10.106.194.252
+
+TASK [hs_role_mssql_cluster : Refresh instance data for license exemption] *****
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : print ansible facts] *****************************
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : get instance id] *********************************
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : include_tasks] ***********************************
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Register instances for SQL HA standby detection] ***
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Wait for registration to complete] ***************
+skipping: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : include_tasks] ***********************************
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Add windows features] ****************************
+changed: [10.106.192.74] => (item=Failover-Clustering)
+changed: [10.106.194.252] => (item=Failover-Clustering)
+changed: [10.106.192.74] => (item=RSAT-Clustering-Mgmt)
+changed: [10.106.194.252] => (item=RSAT-Clustering-Mgmt)
+changed: [10.106.192.74] => (item=RSAT-Clustering-PowerShell)
+changed: [10.106.194.252] => (item=RSAT-Clustering-PowerShell)
+changed: [10.106.192.74] => (item=RSAT-Clustering-CmdInterface)
+changed: [10.106.194.252] => (item=RSAT-Clustering-CmdInterface)
+changed: [10.106.192.74] => (item=RSAT-Clustering-AutomationServer)
+changed: [10.106.194.252] => (item=RSAT-Clustering-AutomationServer)
+changed: [10.106.192.74] => (item=RSAT-AD-PowerShell)
+changed: [10.106.194.252] => (item=RSAT-AD-PowerShell)
+
+TASK [hs_role_mssql_cluster : Check if EC2Launch V2 is installed] **************
+changed: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Show current EC2Launch version] ******************
+ok: [10.106.192.74] => {
+    "msg": "Current EC2Launch version is: 2.3.5"
+}
+ok: [10.106.194.252] => {
+    "msg": "Current EC2Launch version is: 2.3.5"
+}
+
+TASK [hs_role_mssql_cluster : Install EC2Launch V2] ****************************
+ok: [10.106.194.252]
+ok: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Add NVME disks to driveLetterMappingConfig.json] ***
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/add_nvme_mapping_in_EC2_config.yml for 10.106.192.74, 10.106.194.252
+
+TASK [hs_role_mssql_cluster : Change drive letter mapping in EC2launch V2 config] ***
+changed: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Reboot if needed after installing EC2Launch V2] ***
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Reboot if needed] ********************************
+changed: [10.106.192.74]
+changed: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Add DSC module for FailOver Clustering] **********
+changed: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Add DSC module for SQLServer] ********************
+changed: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Add DSC module for AD] ***************************
+changed: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Load EC2 ip addresses] ***************************
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/ip_addresses.yml for 10.106.192.74, 10.106.194.252
+
+TASK [hs_role_mssql_cluster : Get EC2 IP Addresses] ****************************
+ok: [10.106.194.252]
+ok: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : set_fact] ****************************************
+ok: [10.106.192.74]
+ok: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Set fact cluster_ip_address] *********************
+ok: [10.106.192.74]
+ok: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Load disk and partitions] ************************
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/disks.yml for 10.106.192.74, 10.106.194.252
+
+TASK [hs_role_mssql_cluster : disk reconfiguration] ****************************
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/disk_reconfiguration.yml for 10.106.192.74, 10.106.194.252 => (item={'device': 'xvdb', 'size': '1000', 'iops': '3000', 'type': 'gp3', 'throughput': '125'})
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/disk_reconfiguration.yml for 10.106.192.74, 10.106.194.252 => (item={'device': 'xvdc', 'size': '500', 'iops': '3000', 'type': 'gp3', 'throughput': '125'})
+
+TASK [hs_role_mssql_cluster : describe volume] *********************************
+changed: [10.106.194.252 -> localhost]
+changed: [10.106.192.74 -> localhost]
+
+TASK [hs_role_mssql_cluster : print device type] *******************************
+ok: [10.106.192.74] => {
+    "msg": "gp3"
+}
+ok: [10.106.194.252] => {
+    "msg": "gp3"
+}
+
+TASK [hs_role_mssql_cluster : print item type] *********************************
+ok: [10.106.192.74] => {
+    "msg": "gp3"
+}
+ok: [10.106.194.252] => {
+    "msg": "gp3"
+}
+
+TASK [hs_role_mssql_cluster : modify ebs volume] *******************************
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : modify ebs volume gp3 only] **********************
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : modify ebs iops tag] *****************************
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : get volume tag values] ***************************
+ok: [10.106.194.252 -> localhost]
+ok: [10.106.192.74 -> localhost]
+
+TASK [hs_role_mssql_cluster : print device name] *******************************
+ok: [10.106.192.74] => {
+    "msg": [
+        "xvdb"
+    ]
+}
+ok: [10.106.194.252] => {
+    "msg": [
+        "xvdb"
+    ]
+}
+
+TASK [hs_role_mssql_cluster : Update volume tags] ******************************
+[WARNING]: conditional statements should not include jinja2 templating
+delimiters such as {{ }} or {% %}. Found: existing_tags.stdout | from_json |
+json_query("Tags[?Key=='{{ tag_item.name | default('') }}'].Value") | length ==
+0 or existing_tags.stdout | from_json | json_query("Tags[?Key=='{{
+tag_item.name | default('') }}'].Value") | first != tag_item.value
+skipping: [10.106.192.74] => (item={'name': 'hs:std:app-code', 'value': 'MSSQL'}) 
+skipping: [10.106.192.74] => (item={'name': 'hs:std:app-name', 'value': 'hs-main'}) 
+skipping: [10.106.192.74] => (item={'name': 'hs:std:svc-software-owner', 'value': 'DBA'}) 
+skipping: [10.106.192.74] => (item={'name': 'hs:std:svc-operator', 'value': 'DBA'}) 
+[WARNING]: conditional statements should not include jinja2 templating
+delimiters such as {{ }} or {% %}. Found: existing_tags.stdout | from_json |
+json_query("Tags[?Key=='{{ tag_item.name | default('') }}'].Value") | length ==
+0 or existing_tags.stdout | from_json | json_query("Tags[?Key=='{{
+tag_item.name | default('') }}'].Value") | first != tag_item.value
+skipping: [10.106.194.252] => (item={'name': 'hs:std:app-code', 'value': 'MSSQL'}) 
+skipping: [10.106.194.252] => (item={'name': 'hs:std:app-name', 'value': 'hs-main'}) 
+skipping: [10.106.194.252] => (item={'name': 'hs:std:svc-software-owner', 'value': 'DBA'}) 
+skipping: [10.106.194.252] => (item={'name': 'hs:std:svc-operator', 'value': 'DBA'}) 
+changed: [10.106.194.252 -> localhost] => (item={'name': 'hs:std:hostname', 'value': 'TQA52MSSQL2223'})
+changed: [10.106.192.74 -> localhost] => (item={'name': 'hs:std:hostname', 'value': 'TQA52MSSQL2222'})
+changed: [10.106.194.252 -> localhost] => (item={'name': 'Name', 'value': 'TQA52SQLCL2221_data'})
+changed: [10.106.192.74 -> localhost] => (item={'name': 'Name', 'value': 'TQA52SQLCL2221_data'})
+
+TASK [hs_role_mssql_cluster : describe volume] *********************************
+changed: [10.106.192.74 -> localhost]
+changed: [10.106.194.252 -> localhost]
+
+TASK [hs_role_mssql_cluster : print device type] *******************************
+ok: [10.106.192.74] => {
+    "msg": "gp3"
+}
+ok: [10.106.194.252] => {
+    "msg": "gp3"
+}
+
+TASK [hs_role_mssql_cluster : print item type] *********************************
+ok: [10.106.192.74] => {
+    "msg": "gp3"
+}
+ok: [10.106.194.252] => {
+    "msg": "gp3"
+}
+
+TASK [hs_role_mssql_cluster : modify ebs volume] *******************************
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : modify ebs volume gp3 only] **********************
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : modify ebs iops tag] *****************************
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : get volume tag values] ***************************
+ok: [10.106.192.74 -> localhost]
+ok: [10.106.194.252 -> localhost]
+
+TASK [hs_role_mssql_cluster : print device name] *******************************
+ok: [10.106.192.74] => {
+    "msg": [
+        "xvdc"
+    ]
+}
+ok: [10.106.194.252] => {
+    "msg": [
+        "xvdc"
+    ]
+}
+
+TASK [hs_role_mssql_cluster : Update volume tags] ******************************
+[WARNING]: conditional statements should not include jinja2 templating
+delimiters such as {{ }} or {% %}. Found: existing_tags.stdout | from_json |
+json_query("Tags[?Key=='{{ tag_item.name | default('') }}'].Value") | length ==
+0 or existing_tags.stdout | from_json | json_query("Tags[?Key=='{{
+tag_item.name | default('') }}'].Value") | first != tag_item.value
+skipping: [10.106.192.74] => (item={'name': 'hs:std:app-code', 'value': 'MSSQL'}) 
+skipping: [10.106.192.74] => (item={'name': 'hs:std:app-name', 'value': 'hs-main'}) 
+[WARNING]: conditional statements should not include jinja2 templating
+delimiters such as {{ }} or {% %}. Found: existing_tags.stdout | from_json |
+json_query("Tags[?Key=='{{ tag_item.name | default('') }}'].Value") | length ==
+0 or existing_tags.stdout | from_json | json_query("Tags[?Key=='{{
+tag_item.name | default('') }}'].Value") | first != tag_item.value
+skipping: [10.106.192.74] => (item={'name': 'hs:std:svc-software-owner', 'value': 'DBA'}) 
+skipping: [10.106.192.74] => (item={'name': 'hs:std:svc-operator', 'value': 'DBA'}) 
+skipping: [10.106.194.252] => (item={'name': 'hs:std:app-code', 'value': 'MSSQL'}) 
+skipping: [10.106.194.252] => (item={'name': 'hs:std:app-name', 'value': 'hs-main'}) 
+skipping: [10.106.194.252] => (item={'name': 'hs:std:svc-software-owner', 'value': 'DBA'}) 
+skipping: [10.106.194.252] => (item={'name': 'hs:std:svc-operator', 'value': 'DBA'}) 
+changed: [10.106.192.74 -> localhost] => (item={'name': 'hs:std:hostname', 'value': 'TQA52MSSQL2222'})
+changed: [10.106.194.252 -> localhost] => (item={'name': 'hs:std:hostname', 'value': 'TQA52MSSQL2223'})
+changed: [10.106.192.74 -> localhost] => (item={'name': 'Name', 'value': 'TQA52SQLCL2221_logs'})
+changed: [10.106.194.252 -> localhost] => (item={'name': 'Name', 'value': 'TQA52SQLCL2221_logs'})
+
+TASK [hs_role_mssql_cluster : Initialize D disk] *******************************
+ok: [10.106.194.252]
+ok: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Extend D drive partition] ************************
+changed: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Format D drive partition] ************************
+ok: [10.106.194.252]
+ok: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Initialize E disk] *******************************
+ok: [10.106.194.252]
+ok: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Extend E drive partition] ************************
+changed: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Format E drive partition] ************************
+ok: [10.106.194.252]
+ok: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Ensure SQL Server/Agent Services Running] ********
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/sql_service_running.yml for 10.106.192.74, 10.106.194.252
+
+TASK [hs_role_mssql_cluster : Pause for 3 minutes] *****************************
+Pausing for 180 seconds
+(ctrl+C then 'C' = continue early, ctrl+C then 'A' = abort)
+ok: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Ensure SQL Server Service Running] ***************
+changed: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Ensure SQL Server Agent Service Running] *********
+changed: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Set Max Memory] **********************************
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/max_memory.yml for 10.106.192.74, 10.106.194.252
+
+TASK [hs_role_mssql_cluster : Set Max Memory] **********************************
+changed: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Rename SQL] **************************************
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/rename_sql.yml for 10.106.192.74, 10.106.194.252
+
+TASK [hs_role_mssql_cluster : Rename SQL instance] *****************************
+changed: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Flush handlers (force execute now)] **************
+
+RUNNING HANDLER [hs_role_base_Windows : Reboot machine] ************************
+changed: [10.106.194.252]
+changed: [10.106.192.74]
+
+RUNNING HANDLER [hs_role_base_Windows : Flush dns cache] ***********************
+ok: [10.106.194.252]
+ok: [10.106.192.74]
+
+RUNNING HANDLER [hs_role_base_Windows : Restart W32Time service] ***************
+changed: [10.106.194.252]
+changed: [10.106.192.74]
+
+RUNNING HANDLER [hs_role_mssql_cluster : Restart MSSQLDB01 service] ************
+changed: [10.106.194.252]
+changed: [10.106.192.74]
+
+RUNNING HANDLER [hs_role_mssql_cluster : Restart MSSQLAGENTDB01 service] *******
+changed: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Setup failover cluster] **************************
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/failover_cluster.yml for 10.106.192.74, 10.106.194.252
+
+TASK [hs_role_mssql_cluster : Create windows FailOver cluster (node 1)] ********
+skipping: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Setup Cluster Name Object in Active Directory] ***
+skipping: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Pause for 1 minute] ******************************
+Pausing for 60 seconds
+(ctrl+C then 'C' = continue early, ctrl+C then 'A' = abort)
+ok: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Join windows FailOver cluster (node 2)] **********
+skipping: [10.106.192.74]
+changed: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Get current FailOver cluster second ip address] ***
+skipping: [10.106.192.74]
+ok: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Add cluster FailOver second ip address] **********
+skipping: [10.106.192.74]
+changed: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Flush handlers (force execute now)] **************
+[WARNING]: flush_handlers task does not support when conditional
+
+RUNNING HANDLER [hs_role_mssql_cluster : Restart Cluster Service] **************
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Flush handlers (force execute now)] **************
+
+TASK [hs_role_mssql_cluster : Set up Cluster Quorum] ***************************
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/setup_quorum.yml for 10.106.192.74, 10.106.194.252
+
+TASK [hs_role_mssql_cluster : Get current Failover Cluster Quorum value] *******
+skipping: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Show current Failover Cluster Quorum value] ******
+ok: [10.106.192.74] => {
+    "msg": "Current quorum type is: "
+}
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Remove Failover Cluster Quorum] ******************
+skipping: [10.106.194.252]
+ok: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Configure Failover Cluster Quorum] ***************
+skipping: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Setup SQL configuration] *************************
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/sql_configuration.yml for 10.106.192.74, 10.106.194.252
+
+TASK [hs_role_mssql_cluster : Add a  "hst\\service-sql-aws"  to local administrators] ***
+changed: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Sql Database Engine ServiceAccount] **************
+[WARNING]: [TQA52MSSQL2223]:
+[[SqlServiceAccount]DirectResourceAccess] Waiting for service 'SQL Server
+(DB01) (MSSQL$DB01)' to stop...
+changed: [10.106.194.252]
+[WARNING]: [TQA52MSSQL2222]:
+[[SqlServiceAccount]DirectResourceAccess] Waiting for service 'SQL Server
+(DB01) (MSSQL$DB01)' to stop...
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Sql Server Agent ServiceAccount] *****************
+changed: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : SqlEndpoint] *************************************
+changed: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : SqlAlwaysOnService] ******************************
+[WARNING]: [TQA52MSSQL2223]:
+[[SqlAlwaysOnService]DirectResourceAccess] Waiting for service 'SQL Server
+(DB01) (MSSQL$DB01)' to stop...
+changed: [10.106.194.252]
+[WARNING]: [TQA52MSSQL2222]:
+[[SqlAlwaysOnService]DirectResourceAccess] Waiting for service 'SQL Server
+(DB01) (MSSQL$DB01)' to stop...
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Create Server logins] ****************************
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/logins.yml for 10.106.192.74, 10.106.194.252 => (item={'app_name': 'hsmain', 'name': 'app_rel_hsmain', 'server_roles': [], 'type': 'SqlLogin'})
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/logins.yml for 10.106.192.74, 10.106.194.252 => (item={'app_name': 'hsmain', 'name': 'app_svc_hsmain', 'server_roles': [], 'type': 'SqlLogin'})
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/logins.yml for 10.106.192.74, 10.106.194.252 => (item={'app_name': 'hsmain', 'name': 'app_ro_hsmain', 'server_roles': [], 'type': 'SqlLogin'})
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/logins.yml for 10.106.192.74, 10.106.194.252 => (item={'app_name': 'sql_console', 'name': 'app_ro_console', 'server_roles': [], 'type': 'SqlLogin'})
+
+TASK [hs_role_mssql_cluster : Ensure SqlLogin 'app_rel_hsmain' is 'Present'] ***
+changed: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Ensure WindowsUser Login 'app_rel_hsmain' is 'Present'] ***
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Ensure WindowsGroup Login 'app_rel_hsmain' is 'Present'] ***
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Add login to server role] ************************
+
+TASK [hs_role_mssql_cluster : Ensure SqlLogin 'app_svc_hsmain' is 'Present'] ***
+changed: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Ensure WindowsUser Login 'app_svc_hsmain' is 'Present'] ***
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Ensure WindowsGroup Login 'app_svc_hsmain' is 'Present'] ***
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Add login to server role] ************************
+
+TASK [hs_role_mssql_cluster : Ensure SqlLogin 'app_ro_hsmain' is 'Present'] ****
+changed: [10.106.192.74]
+changed: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Ensure WindowsUser Login 'app_ro_hsmain' is 'Present'] ***
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Ensure WindowsGroup Login 'app_ro_hsmain' is 'Present'] ***
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Add login to server role] ************************
+
+TASK [hs_role_mssql_cluster : Ensure SqlLogin 'app_ro_console' is 'Present'] ***
+changed: [10.106.192.74]
+changed: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Ensure WindowsUser Login 'app_ro_console' is 'Present'] ***
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Ensure WindowsGroup Login 'app_ro_console' is 'Present'] ***
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Add login to server role] ************************
+
+TASK [hs_role_mssql_cluster : Create Global logins] ****************************
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/logins.yml for 10.106.192.74, 10.106.194.252 => (item={'app_name': 'dbreload', 'name': 'servicereload', 'server_roles': ['dbcreator'], 'type': 'SqlLogin'})
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/logins.yml for 10.106.192.74, 10.106.194.252 => (item={'app_name': 'sql_console', 'name': 'app_svc_metricbeat', 'server_roles': [], 'type': 'SqlLogin'})
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/logins.yml for 10.106.192.74, 10.106.194.252 => (item={'name': 'hst\\service-adds', 'server_roles': ['sysadmin'], 'type': 'WindowsUser'})
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/logins.yml for 10.106.192.74, 10.106.194.252 => (item={'name': 'hst\\service-sql-aws', 'server_roles': ['sysadmin'], 'type': 'WindowsUser'})
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/logins.yml for 10.106.192.74, 10.106.194.252 => (item={'name': 'hst\\DBA', 'server_roles': ['sysadmin'], 'type': 'WindowsGroup'})
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/logins.yml for 10.106.192.74, 10.106.194.252 => (item={'name': 'HST\\service-tidal', 'server_roles': [], 'type': 'WindowsUser'})
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/logins.yml for 10.106.192.74, 10.106.194.252 => (item={'name': 'HST\\service-ansible-ad', 'server_roles': ['sysadmin'], 'type': 'WindowsUser'})
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/logins.yml for 10.106.192.74, 10.106.194.252 => (item={'name': 'HST\\service-dr-sync-aws', 'server_roles': ['sysadmin'], 'type': 'WindowsUser'})
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/logins.yml for 10.106.192.74, 10.106.194.252 => (item={'name': 'HST\\service-elasticauto', 'server_roles': [], 'type': 'WindowsUser'})
+
+TASK [hs_role_mssql_cluster : Ensure SqlLogin 'servicereload' is 'Present'] ****
+changed: [10.106.192.74]
+changed: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Ensure WindowsUser Login 'servicereload' is 'Present'] ***
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Ensure WindowsGroup Login 'servicereload' is 'Present'] ***
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Add login to server role] ************************
+changed: [10.106.192.74] => (item=dbcreator)
+changed: [10.106.194.252] => (item=dbcreator)
+
+TASK [hs_role_mssql_cluster : Ensure SqlLogin 'app_svc_metricbeat' is 'Present'] ***
+changed: [10.106.192.74]
+changed: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Ensure WindowsUser Login 'app_svc_metricbeat' is 'Present'] ***
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Ensure WindowsGroup Login 'app_svc_metricbeat' is 'Present'] ***
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Add login to server role] ************************
+
+TASK [hs_role_mssql_cluster : Ensure SqlLogin 'hst\service-adds' is 'Present'] ***
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Ensure WindowsUser Login 'hst\service-adds' is 'Present'] ***
+changed: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Ensure WindowsGroup Login 'hst\service-adds' is 'Present'] ***
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Add login to server role] ************************
+changed: [10.106.192.74] => (item=sysadmin)
+changed: [10.106.194.252] => (item=sysadmin)
+
+TASK [hs_role_mssql_cluster : Ensure SqlLogin 'hst\service-sql-aws' is 'Present'] ***
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Ensure WindowsUser Login 'hst\service-sql-aws' is 'Present'] ***
+changed: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Ensure WindowsGroup Login 'hst\service-sql-aws' is 'Present'] ***
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Add login to server role] ************************
+changed: [10.106.194.252] => (item=sysadmin)
+changed: [10.106.192.74] => (item=sysadmin)
+
+TASK [hs_role_mssql_cluster : Ensure SqlLogin 'hst\DBA' is 'Present'] **********
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Ensure WindowsUser Login 'hst\DBA' is 'Present'] ***
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Ensure WindowsGroup Login 'hst\DBA' is 'Present'] ***
+changed: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Add login to server role] ************************
+changed: [10.106.194.252] => (item=sysadmin)
+changed: [10.106.192.74] => (item=sysadmin)
+
+TASK [hs_role_mssql_cluster : Ensure SqlLogin 'HST\service-tidal' is 'Present'] ***
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Ensure WindowsUser Login 'HST\service-tidal' is 'Present'] ***
+changed: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Ensure WindowsGroup Login 'HST\service-tidal' is 'Present'] ***
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Add login to server role] ************************
+
+TASK [hs_role_mssql_cluster : Ensure SqlLogin 'HST\service-ansible-ad' is 'Present'] ***
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Ensure WindowsUser Login 'HST\service-ansible-ad' is 'Present'] ***
+ok: [10.106.194.252]
+ok: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Ensure WindowsGroup Login 'HST\service-ansible-ad' is 'Present'] ***
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Add login to server role] ************************
+changed: [10.106.194.252] => (item=sysadmin)
+changed: [10.106.192.74] => (item=sysadmin)
+
+TASK [hs_role_mssql_cluster : Ensure SqlLogin 'HST\service-dr-sync-aws' is 'Present'] ***
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Ensure WindowsUser Login 'HST\service-dr-sync-aws' is 'Present'] ***
+changed: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Ensure WindowsGroup Login 'HST\service-dr-sync-aws' is 'Present'] ***
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Add login to server role] ************************
+changed: [10.106.194.252] => (item=sysadmin)
+changed: [10.106.192.74] => (item=sysadmin)
+
+TASK [hs_role_mssql_cluster : Ensure SqlLogin 'HST\service-elasticauto' is 'Present'] ***
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Ensure WindowsUser Login 'HST\service-elasticauto' is 'Present'] ***
+changed: [10.106.192.74]
+changed: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Ensure WindowsGroup Login 'HST\service-elasticauto' is 'Present'] ***
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Add login to server role] ************************
+
+TASK [hs_role_mssql_cluster : Add app_ro_console server level permissions] *****
+changed: [10.106.192.74]
+changed: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Ensure login BUILTIN\Administrators is absent] ***
+changed: [10.106.192.74]
+changed: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Set SQL LPM] *************************************
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/LPM.yml for 10.106.192.74, 10.106.194.252
+
+TASK [hs_role_mssql_cluster : Set LPM] *****************************************
+changed: [10.106.192.74]
+changed: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Flush handlers (force execute now)] **************
+
+RUNNING HANDLER [hs_role_mssql_cluster : Restart MSSQLDB01 service] ************
+changed: [10.106.194.252]
+changed: [10.106.192.74]
+
+RUNNING HANDLER [hs_role_mssql_cluster : Restart MSSQLAGENTDB01 service] *******
+changed: [10.106.192.74]
+changed: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Set Backup Share] ********************************
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/backup_share.yml for 10.106.192.74, 10.106.194.252
+
+TASK [hs_role_mssql_cluster : Set backup share] ********************************
+changed: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Setup SQL AG, SQL Listeners and Databases] *******
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/sql_availability_groups.yml for 10.106.192.74, 10.106.194.252 => (item={'key': 'slot1', 'value': {'client': 'INIT2221', 'name': 'hsolyrnd2221', 'release_group': 'hs-main-cai', 'source_env': 'INIT', 'sqljob': 'yes', 'type': 'olympus'}})
+
+TASK [hs_role_mssql_cluster : include_tasks] ***********************************
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/sql_cleanup_availability_groups.yml for 10.106.192.74, 10.106.194.252
+
+TASK [hs_role_mssql_cluster : print group ip] **********************************
+ok: [10.106.192.74] => {
+    "msg": "this is group ip 10.106.192.159"
+}
+ok: [10.106.194.252] => {
+    "msg": "this is group ip 10.106.195.113"
+}
+
+TASK [hs_role_mssql_cluster : Get current slot group] **************************
+ok: [10.106.192.74]
+ok: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : set_fact] ****************************************
+ok: [10.106.192.74]
+ok: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : print ag_db_name] ********************************
+ok: [10.106.192.74] => {
+    "msg": "this is ag db name "
+}
+ok: [10.106.194.252] => {
+    "msg": "this is ag db name "
+}
+
+TASK [hs_role_mssql_cluster : print slot value] ********************************
+ok: [10.106.192.74] => {
+    "msg": "this is slot value name hsolyrnd2221"
+}
+ok: [10.106.194.252] => {
+    "msg": "this is slot value name hsolyrnd2221"
+}
+
+TASK [hs_role_mssql_cluster : print slot value name not defined] ***************
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : set_fact] ****************************************
+ok: [10.106.192.74]
+ok: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Check if SqlAGListener exists] *******************
+ok: [10.106.192.74]
+ok: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : set cleanup mode] ********************************
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Get primary replica server name] *****************
+ok: [10.106.192.74]
+ok: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : set fact for primary replica] ********************
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Slot 1 is defined for 'hsolyrnd2221'. Remove AG '' if not used anymore] ***
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Clean AD object for '' if not used anymore] ******
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : print ag db named without D] *********************
+ok: [10.106.192.74] => {
+    "msg": "this is ag db name without D "
+}
+ok: [10.106.194.252] => {
+    "msg": "this is ag db name without D "
+}
+
+TASK [hs_role_mssql_cluster : set_fact] ****************************************
+ok: [10.106.192.74]
+ok: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : include_tasks] ***********************************
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : remove cleanup mode] *****************************
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : include_tasks] ***********************************
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/sql_offline_availability_groups.yml for 10.106.192.74, 10.106.194.252
+
+TASK [hs_role_mssql_cluster : Take database offline if offline is set to true for slot] ***
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Create new SqlAG '{{ new_ag_name }}'] ************
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Create SqlAGListener 'hsolyrnd2221'] *************
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Create SqlAG 'hsolyrnd2221'] *********************
+skipping: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Create SqlAGListener 'hsolyrnd2221'] *************
+skipping: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Get hsolyrnd2221 cluster name settings] **********
+skipping: [10.106.194.252]
+ok: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Set facts for hsolyrnd2221 cluster name settings] ***
+skipping: [10.106.194.252]
+ok: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Set hsolyrnd2221 HostRecordTTL to 60 seconds] ****
+skipping: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Disable hsolyrnd2221 RegisterAllProvidersIP for DNS] ***
+skipping: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Restart Cluster Group 'hsolyrnd2221'] ************
+skipping: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Setup Availability Group AD Computer object description] ***
+skipping: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Add SqlAGReplica 'hsolyrnd2221' (second node)] ***
+skipping: [10.106.192.74]
+changed: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : print slot value] ********************************
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : print slot value type not defined] ***************
+ok: [10.106.192.74] => {
+    "msg": "slot value type is not defined"
+}
+ok: [10.106.194.252] => {
+    "msg": "slot value type is not defined"
+}
+
+TASK [hs_role_mssql_cluster : Setup SQL AG hsadmin Database] *******************
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/sql_hsadmin_availability_group.yml for 10.106.192.74, 10.106.194.252
+
+TASK [hs_role_mssql_cluster : Ensure Database hsadmin is in FULL Recovery model and delete backup history] ***
+changed: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Create SqlAG hsadmin] ****************************
+skipping: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Add SqlAGReplica hsadmin (second node)] **********
+skipping: [10.106.192.74]
+changed: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Restore empty databases] *************************
+skipping: [10.106.194.252] => (item={'key': 'slot1', 'value': {'client': 'INIT2221', 'name': 'hsolyrnd2221', 'release_group': 'hs-main-cai', 'source_env': 'INIT', 'sqljob': 'yes', 'type': 'olympus'}}) 
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/sql_restore_empty.yml for 10.106.192.74 => (item={'key': 'slot1', 'value': {'client': 'INIT2221', 'name': 'hsolyrnd2221', 'release_group': 'hs-main-cai', 'source_env': 'INIT', 'sqljob': 'yes', 'type': 'olympus'}})
+
+TASK [hs_role_mssql_cluster : Create empty database "hsolyrnd2221"] ************
+skipping: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Check missing DBs on first node] *****************
+skipping: [10.106.194.252] => (item={'key': 'slot1', 'value': {'client': 'INIT2221', 'name': 'hsolyrnd2221', 'release_group': 'hs-main-cai', 'source_env': 'INIT', 'sqljob': 'yes', 'type': 'olympus'}}) 
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/sql_check_missing_dbs.yml for 10.106.192.74 => (item={'key': 'slot1', 'value': {'client': 'INIT2221', 'name': 'hsolyrnd2221', 'release_group': 'hs-main-cai', 'source_env': 'INIT', 'sqljob': 'yes', 'type': 'olympus'}})
+
+TASK [hs_role_mssql_cluster : Set fact for prd_backup_share] *******************
+skipping: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Get full path for restore file] ******************
+skipping: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Extract base name up to the last underscore before part] ***
+skipping: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Extract backup path (directory only)] ************
+skipping: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Print backup_path] *******************************
+skipping: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Print latest_backup_base] ************************
+skipping: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Find all backup parts matching the base pattern] ***
+skipping: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Convert latest_backup_parts to a list] ***********
+skipping: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Print matching backup parts] *********************
+skipping: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Print backup part 0] *****************************
+skipping: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Set backup part 0] *******************************
+skipping: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Check if database 'hsolyrnd2221' exists] *********
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : set_fact] ****************************************
+ok: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : print missing databases] *************************
+ok: [10.106.192.74] => {
+    "msg": [
+        {
+            "key": "slot1",
+            "value": {
+                "client": "INIT2221",
+                "name": "hsolyrnd2221",
+                "release_group": "hs-main-cai",
+                "source_env": "INIT",
+                "sqljob": "yes",
+                "type": "olympus"
+            }
+        }
+    ]
+}
+
+TASK [hs_role_mssql_cluster : Include backup picker tasks] *********************
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/backup_picker.yml for 10.106.192.74
+
+TASK [hs_role_mssql_cluster : Set fact for prd_backup_share] *******************
+ok: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : this is prd backup share] ************************
+ok: [10.106.192.74] => {
+    "msg": "\\\\hedgeservtest.com\\shared\\s3-db-backups\\prd"
+}
+
+TASK [hs_role_mssql_cluster : Set fact for the possible source database names] ***
+ok: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Search recursively for a specific folder name in the directory and pick the most recent backup folder] ***
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Display folder search result] ********************
+ok: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : print backup folder path] ************************
+ok: [10.106.192.74] => {
+    "msg": "\\\\hedgeservtest.com\\shared\\s3-db-backups\\prd\\cs01-10mssql27\\hsfainit9000"
+}
+
+TASK [hs_role_mssql_cluster : Get the most recent 15 backup files] *************
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Display found backups] ***************************
+ok: [10.106.192.74] => {
+    "msg": [
+        "\\\\hedgeservtest.com\\shared\\s3-db-backups\\prd\\cs01-10mssql27\\hsfainit9000\\wk_15_Tuesday_202604070105_FULL_hsfainit9000_part4.LBK",
+        "\\\\hedgeservtest.com\\shared\\s3-db-backups\\prd\\cs01-10mssql27\\hsfainit9000\\wk_15_Tuesday_202604070105_FULL_hsfainit9000_part3.LBK",
+        "\\\\hedgeservtest.com\\shared\\s3-db-backups\\prd\\cs01-10mssql27\\hsfainit9000\\wk_15_Tuesday_202604070105_FULL_hsfainit9000_part2.LBK",
+        "\\\\hedgeservtest.com\\shared\\s3-db-backups\\prd\\cs01-10mssql27\\hsfainit9000\\wk_15_Tuesday_202604070105_FULL_hsfainit9000_part1.LBK",
+        "\\\\hedgeservtest.com\\shared\\s3-db-backups\\prd\\cs01-10mssql27\\hsfainit9000\\wk_15_Tuesday_202604070105_FULL_hsfainit9000_part0.LBK",
+        "\\\\hedgeservtest.com\\shared\\s3-db-backups\\prd\\cs01-10mssql27\\hsfainit9000\\wk_15_Monday_202604060105_FULL_hsfainit9000_part4.LBK",
+        "\\\\hedgeservtest.com\\shared\\s3-db-backups\\prd\\cs01-10mssql27\\hsfainit9000\\wk_15_Monday_202604060105_FULL_hsfainit9000_part3.LBK",
+        "\\\\hedgeservtest.com\\shared\\s3-db-backups\\prd\\cs01-10mssql27\\hsfainit9000\\wk_15_Monday_202604060105_FULL_hsfainit9000_part2.LBK",
+        "\\\\hedgeservtest.com\\shared\\s3-db-backups\\prd\\cs01-10mssql27\\hsfainit9000\\wk_15_Monday_202604060105_FULL_hsfainit9000_part1.LBK",
+        "\\\\hedgeservtest.com\\shared\\s3-db-backups\\prd\\cs01-10mssql27\\hsfainit9000\\wk_15_Monday_202604060105_FULL_hsfainit9000_part0.LBK",
+        "\\\\hedgeservtest.com\\shared\\s3-db-backups\\prd\\cs01-10mssql27\\hsfainit9000\\hsfainit9000_part4.LBK",
+        "\\\\hedgeservtest.com\\shared\\s3-db-backups\\prd\\cs01-10mssql27\\hsfainit9000\\hsfainit9000_part3.LBK",
+        "\\\\hedgeservtest.com\\shared\\s3-db-backups\\prd\\cs01-10mssql27\\hsfainit9000\\hsfainit9000_part2.LBK",
+        "\\\\hedgeservtest.com\\shared\\s3-db-backups\\prd\\cs01-10mssql27\\hsfainit9000\\hsfainit9000_part1.LBK",
+        "\\\\hedgeservtest.com\\shared\\s3-db-backups\\prd\\cs01-10mssql27\\hsfainit9000\\hsfainit9000_part0.LBK"
+    ]
+}
+
+TASK [hs_role_mssql_cluster : Find the latest backup by name] ******************
+ok: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : print latest backup] *****************************
+ok: [10.106.192.74] => {
+    "msg": "Latest backup: \\\\hedgeservtest.com\\shared\\s3-db-backups\\prd\\cs01-10mssql27\\hsfainit9000\\wk_15_Tuesday_202604070105_FULL_hsfainit9000_part4.LBK"
+}
+
+TASK [hs_role_mssql_cluster : Extract base name up to the last underscore before part] ***
+ok: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : print latest backup base] ************************
+ok: [10.106.192.74] => {
+    "msg": "Latest backup base: \\\\hedgeservtest.com\\shared\\s3-db-backups\\prd\\cs01-10mssql27\\hsfainit9000\\wk_15_Tuesday_202604070105_FULL_hsfainit9000_"
+}
+
+TASK [hs_role_mssql_cluster : Get all parts of the latest backup] **************
+ok: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Display latest backup] ***************************
+ok: [10.106.192.74] => {
+    "msg": "Latest backup: \\\\hedgeservtest.com\\shared\\s3-db-backups\\prd\\cs01-10mssql27\\hsfainit9000\\wk_15_Tuesday_202604070105_FULL_hsfainit9000_part4.LBK"
+}
+
+TASK [hs_role_mssql_cluster : Display latest backup base] **********************
+ok: [10.106.192.74] => {
+    "msg": "Latest backup base: \\\\hedgeservtest.com\\shared\\s3-db-backups\\prd\\cs01-10mssql27\\hsfainit9000\\wk_15_Tuesday_202604070105_FULL_hsfainit9000_"
+}
+
+TASK [hs_role_mssql_cluster : Display latest backup parts] *********************
+ok: [10.106.192.74] => {
+    "msg": "Latest backup parts: ['\\\\\\\\hedgeservtest.com\\\\shared\\\\s3-db-backups\\\\prd\\\\cs01-10mssql27\\\\hsfainit9000\\\\wk_15_Tuesday_202604070105_FULL_hsfainit9000_part4.LBK', '\\\\\\\\hedgeservtest.com\\\\shared\\\\s3-db-backups\\\\prd\\\\cs01-10mssql27\\\\hsfainit9000\\\\wk_15_Tuesday_202604070105_FULL_hsfainit9000_part3.LBK', '\\\\\\\\hedgeservtest.com\\\\shared\\\\s3-db-backups\\\\prd\\\\cs01-10mssql27\\\\hsfainit9000\\\\wk_15_Tuesday_202604070105_FULL_hsfainit9000_part2.LBK', '\\\\\\\\hedgeservtest.com\\\\shared\\\\s3-db-backups\\\\prd\\\\cs01-10mssql27\\\\hsfainit9000\\\\wk_15_Tuesday_202604070105_FULL_hsfainit9000_part1.LBK', '\\\\\\\\hedgeservtest.com\\\\shared\\\\s3-db-backups\\\\prd\\\\cs01-10mssql27\\\\hsfainit9000\\\\wk_15_Tuesday_202604070105_FULL_hsfainit9000_part0.LBK']"
+}
+
+TASK [hs_role_mssql_cluster : Set backup part 0 after backup picker] ***********
+ok: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Construct restore query] *************************
+ok: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Display restore query] ***************************
+ok: [10.106.192.74] => {
+    "msg": "this is restore query SET NOCOUNT ON;\n\ndeclare @logicalNameData nvarchar(50),\n        @logicalNameLog nvarchar(50),\n        @database_logical_data_file_parameter nvarchar(255),\n        @database_logical_log_file_parameter nvarchar(255);\n\nif object_id('tempdb..#logicalNames') is not null\ndrop table #logicalNames\n\ncreate table #logicalNames(\n      logicalName nvarchar(50),\n    physiclaName nvarchar(255),\n      logicalNameType char(1),\n    fileGroupName nvarchar (25),\n    size bigint,\n    maxSize bigint,\n    fileID int,\n    backupSizeInBytes bigint,\n    fileGroupID int\n    )\n\n\ninsert into #logicalNames\nexec master.dbo.xp_restore_filelistonly @filename= '\\\\hedgeservtest.com\\shared\\s3-db-backups\\prd\\cs01-10mssql27\\hsfainit9000\\wk_15_Tuesday_202604070105_FULL_hsfainit9000_part0.LBK'\n\nSET @logicalNameData= (select logicalName from #logicalNames where logicalNameType='D')\nSET @logicalNameLog= (select logicalName from #logicalNames where logicalNameType='L')\n\nSET @database_logical_data_file_parameter='MOVE ''' +@logicalNameData+ ''' TO ''D:\\DATA\\hsolyrnd2221.mdf''';\nSET @database_logical_log_file_parameter='MOVE ''' +@logicalNameLog+ ''' TO ''E:\\LOG\\hsolyrnd2221_log.ldf''';\n\nIF EXISTS(select name from sys.databases where name = 'hsolyrnd2221')\nBEGIN\n  ALTER DATABASE hsolyrnd2221 SET OFFLINE WITH ROLLBACK IMMEDIATE\nEND\n\nEXEC master.dbo.xp_restore_database\n@database = N'hsolyrnd2221',\n@filename='\\\\hedgeservtest.com\\shared\\s3-db-backups\\prd\\cs01-10mssql27\\hsfainit9000\\wk_15_Tuesday_202604070105_FULL_hsfainit9000_part4.LBK',\n@filename='\\\\hedgeservtest.com\\shared\\s3-db-backups\\prd\\cs01-10mssql27\\hsfainit9000\\wk_15_Tuesday_202604070105_FULL_hsfainit9000_part3.LBK',\n@filename='\\\\hedgeservtest.com\\shared\\s3-db-backups\\prd\\cs01-10mssql27\\hsfainit9000\\wk_15_Tuesday_202604070105_FULL_hsfainit9000_part2.LBK',\n@filename='\\\\hedgeservtest.com\\shared\\s3-db-backups\\prd\\cs01-10mssql27\\hsfainit9000\\wk_15_Tuesday_202604070105_FULL_hsfainit9000_part1.LBK',\n@filename='\\\\hedgeservtest.com\\shared\\s3-db-backups\\prd\\cs01-10mssql27\\hsfainit9000\\wk_15_Tuesday_202604070105_FULL_hsfainit9000_part0.LBK',\n@filenumber = 1,\n@UseSSL = 1,\n@with = N'STATS = 10',\n@With = @database_logical_data_file_parameter,\n@With = @database_logical_log_file_parameter,\n@With = N'NORECOVERY',\n@With = N'REPLACE',\n@affinity = 0,\n@logging = 0\n"
+}
+
+TASK [hs_role_mssql_cluster : restore the db] **********************************
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Display SQL query result] ************************
+ok: [10.106.192.74] => {
+    "sql_query_result": {
+        "changed": true,
+        "failed": false,
+        "module_version": "16.0.0",
+        "reboot_required": false
+    }
+}
+
+TASK [hs_role_mssql_cluster : run ms sql query to restore database and set properties using dsc sqlscriptquery] ***
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Set missing_databases to null] *******************
+ok: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Add databases to availability groups] ************
+skipping: [10.106.194.252] => (item={'key': 'slot1', 'value': {'client': 'INIT2221', 'name': 'hsolyrnd2221', 'release_group': 'hs-main-cai', 'source_env': 'INIT', 'sqljob': 'yes', 'type': 'olympus'}}) 
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/sql_add_databases_to_ag.yml for 10.106.192.74 => (item={'key': 'slot1', 'value': {'client': 'INIT2221', 'name': 'hsolyrnd2221', 'release_group': 'hs-main-cai', 'source_env': 'INIT', 'sqljob': 'yes', 'type': 'olympus'}})
+
+TASK [hs_role_mssql_cluster : Bring database 'hsolyrnd2221' online if it is offline] ***
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Ensure Database 'hsolyrnd2221' is in FULL Recovery model] ***
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Add Database to Replica] *************************
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Add DB to AGs on both replicas] ******************
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/add_db_to_ag.yml for 10.106.192.74, 10.106.194.252 => (item={'key': 'slot1', 'value': {'client': 'INIT2221', 'name': 'hsolyrnd2221', 'release_group': 'hs-main-cai', 'source_env': 'INIT', 'sqljob': 'yes', 'type': 'olympus'}})
+
+TASK [hs_role_mssql_cluster : Add to AG on Primary Replica] ********************
+skipping: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Join database to Availability Group on Secondary Replica] ***
+skipping: [10.106.192.74]
+changed: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Fix and sync logins to DBs] **********************
+skipping: [10.106.194.252] => (item={'key': 'slot1', 'value': {'client': 'INIT2221', 'name': 'hsolyrnd2221', 'release_group': 'hs-main-cai', 'source_env': 'INIT', 'sqljob': 'yes', 'type': 'olympus'}}) 
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/fix_logins_users.yml for 10.106.192.74 => (item={'key': 'slot1', 'value': {'client': 'INIT2221', 'name': 'hsolyrnd2221', 'release_group': 'hs-main-cai', 'source_env': 'INIT', 'sqljob': 'yes', 'type': 'olympus'}})
+
+TASK [hs_role_mssql_cluster : Fix users and logins for 'hsolyrnd2221'] *********
+skipping: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Remove legacy logins for 'hsolyrnd2221'] *********
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Fix RO logins for 'hsolyrnd2221'] ****************
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Fix users and logins for 'hsolyrnd2221'] *********
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Add hsadmin to an availability group] ************
+skipping: [10.106.194.252]
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/sql_add_hsadmin_to_ag.yml for 10.106.192.74
+
+TASK [hs_role_mssql_cluster : Add database hsadmin to an Availability Group] ***
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Add app_ro_console DB level permissions] *********
+skipping: [10.106.194.252] => (item={'key': 'slot1', 'value': {'client': 'INIT2221', 'name': 'hsolyrnd2221', 'release_group': 'hs-main-cai', 'source_env': 'INIT', 'sqljob': 'yes', 'type': 'olympus'}}) 
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/app_ro_console_showplan.yml for 10.106.192.74 => (item={'key': 'slot1', 'value': {'client': 'INIT2221', 'name': 'hsolyrnd2221', 'release_group': 'hs-main-cai', 'source_env': 'INIT', 'sqljob': 'yes', 'type': 'olympus'}})
+
+TASK [hs_role_mssql_cluster : Add app_ro_console SHOWPLAN permissions for 'hsolyrnd2221'] ***
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Add datbase transaction backup and weekend reorg jobs if required.] ***
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/sql_add_jobs.yml for 10.106.192.74, 10.106.194.252 => (item={'key': 'slot1', 'value': {'client': 'INIT2221', 'name': 'hsolyrnd2221', 'release_group': 'hs-main-cai', 'source_env': 'INIT', 'sqljob': 'yes', 'type': 'olympus'}})
+
+TASK [hs_role_mssql_cluster : Add transaction backup and weekend reorg jobs if required for database 'hsolyrnd2221'] ***
+changed: [10.106.192.74]
+changed: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Update TempDB to use NVMe disk if availaible] ****
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/NVME.yml for 10.106.192.74, 10.106.194.252
+
+TASK [hs_role_mssql_cluster : Init NVMe disk if needed] ************************
+ok: [10.106.194.252]
+ok: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Update tempdb files to use NVMe disk] ************
+changed: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Flush handlers (force execute now)] **************
+
+RUNNING HANDLER [hs_role_mssql_cluster : Restart MSSQLDB01 service] ************
+changed: [10.106.192.74]
+changed: [10.106.194.252]
+
+RUNNING HANDLER [hs_role_mssql_cluster : Restart MSSQLAGENTDB01 service] *******
+changed: [10.106.192.74]
+changed: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Ensure SQL Server/Agent Services Running Again] ***
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Failback Availability Groups] ********************
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/failback_availability_groups.yml for 10.106.192.74, 10.106.194.252
+
+TASK [hs_role_mssql_cluster : Move Availability Groups to Primary] *************
+skipping: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Fail When Failover Fails] ************************
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : create stored procedures] ************************
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/create_stored_procedures.yml for 10.106.192.74, 10.106.194.252
+
+TASK [hs_role_mssql_cluster : Create sp_create_linked_servers SP] **************
+changed: [10.106.192.74]
+changed: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Create dba_CopyLogins SP] ************************
+changed: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Modify sp_bad_users SP] **************************
+ok: [10.106.194.252]
+ok: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Create sp_Reload2_AG_DB SP] **********************
+changed: [10.106.192.74]
+changed: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : create alerts] ***********************************
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/create_alerts.yml for 10.106.192.74, 10.106.194.252
+
+TASK [hs_role_mssql_cluster : create alerts] ***********************************
+changed: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : change wknd maint job (noindex)] *****************
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/wknd_maint_no_index.yml for 10.106.192.74, 10.106.194.252
+
+TASK [hs_role_mssql_cluster : Update weekend Maintenance job(no index)] ********
+ok: [10.106.194.252]
+ok: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : change full backup job (COPY_ONLY)] **************
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/copy_only_backup.yml for 10.106.192.74, 10.106.194.252
+
+TASK [hs_role_mssql_cluster : Update weekend Maintenance job(no index)] ********
+changed: [10.106.192.74]
+changed: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Drop logins] *************************************
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/drop_sql_logins.yml for 10.106.192.74, 10.106.194.252
+
+TASK [hs_role_mssql_cluster : Drop logins from MSSQL starting with 'win' and containing 'admin'] ***
+changed: [10.106.192.74]
+changed: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Remove "service-ansible-ad@hedgeservtest.com" from local administrators] ***
+changed: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Fix service-elasticauto AD login permissions] ****
+changed: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Install, Configure Metricbeat and SQL Module with SQL Custom Queries] ***
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/install_metricbeat.yml for 10.106.192.74, 10.106.194.252 => (item=install_metricbeat.yml)
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/sql_instance_check.yml for 10.106.192.74, 10.106.194.252 => (item=sql_instance_check.yml)
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/config_metricbeat.yml for 10.106.192.74, 10.106.194.252 => (item=config_metricbeat.yml)
+included: /opt/ansible/playbooks/mssql_cluster/roles/hs_role_mssql_cluster/tasks/start_metricbeat.yml for 10.106.192.74, 10.106.194.252 => (item=start_metricbeat.yml)
+
+TASK [hs_role_mssql_cluster : Check version of metricbeat] *********************
+fatal: [10.106.194.252]: FAILED! => {"censored": "the output has been hidden due to the fact that 'no_log: true' was specified for this result", "changed": false}
+...ignoring
+fatal: [10.106.192.74]: FAILED! => {"censored": "the output has been hidden due to the fact that 'no_log: true' was specified for this result", "changed": false}
+...ignoring
+
+TASK [hs_role_mssql_cluster : Remove metricbeat service] ***********************
+skipping: [10.106.192.74]
+skipping: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Creating temp\beats Path] ************************
+changed: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Download metricbeat from artifactory] ************
+changed: [10.106.192.74]
+changed: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Unzip Metricbeat] ********************************
+changed: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Move metricbeat folder under Program Files] ******
+changed: [10.106.192.74]
+changed: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Check mssql instance] ****************************
+ok: [10.106.192.74]
+ok: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Processing host name and db instance per metricbeat sql requirements] ***
+ok: [10.106.192.74]
+ok: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Add account to Log on as a service] **************
+changed: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Change metricbeat.yml] ***************************
+changed: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Change sql.yml] **********************************
+changed: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Change system.yml] *******************************
+changed: [10.106.192.74]
+changed: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Url Encoding for SQL password] *******************
+ok: [10.106.192.74] => (item=None)
+ok: [10.106.194.252] => (item=None)
+ok: [10.106.192.74] => (item=None)
+ok: [10.106.192.74]
+ok: [10.106.194.252] => (item=None)
+ok: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Set an environment variable for all users] *******
+changed: [10.106.192.74]
+changed: [10.106.194.252]
+
+TASK [hs_role_mssql_cluster : Windows Add Metricbeat Password] *****************
+changed: [10.106.194.252]
+changed: [10.106.192.74]
+
+TASK [hs_role_mssql_cluster : Windows Start Metricbeat Service] ****************
+An exception occurred during task execution. To see the full traceback, use -vvv. The error was: at <ScriptBlock>, <No file>: line 1064
+fatal: [10.106.192.74]: FAILED! => {"changed": false, "msg": "Unhandled exception while executing module: Service 'metricbeat (metricbeat)' cannot be started due to the following error: Cannot start service metricbeat on computer '.'."}
+An exception occurred during task execution. To see the full traceback, use -vvv. The error was: at <ScriptBlock>, <No file>: line 1064
+fatal: [10.106.194.252]: FAILED! => {"changed": false, "msg": "Unhandled exception while executing module: Service 'metricbeat (metricbeat)' cannot be started due to the following error: Cannot start service metricbeat on computer '.'."}
+
+NO MORE HOSTS LEFT *************************************************************
+
+PLAY RECAP *********************************************************************
+10.106.192.74              : ok=303  changed=130  unreachable=0    failed=1    skipped=111  rescued=0    ignored=3   
+10.106.194.252             : ok=246  changed=109  unreachable=0    failed=1    skipped=115  rescued=0    ignored=3   
+
+JSON Report generated in report.json
+HTML Report generated in report.html
+Playbook run took 0 days, 0 hours, 44 minutes, 22 seconds
+Upload report to s3 bucket 'hedgeserv-qa-avm-us-east-2-s3-artifacts'
+https://s3.console.aws.amazon.com/s3/buckets/hedgeserv-qa-avm-us-east-2-s3-artifacts?region=us-east-2&prefix=ANSIBLE/PLAYBOOKS/mssql_cluster/TQA52SQLCL2221/2026-04-07-14-39-27/&showversions=false
+
+[Container] 2026/04/07 15:23:57.636959 Command did not exit successfully # See the log above for errors!!!
+
+# Define playbook parameters. This is managed by terraform.
+export PLAYBOOK="mssql_cluster"
+export ENVIRONMENT="qa"
+export ARTIFACTS_BUCKET="hedgeserv-qa-avm-us-east-2-s3-artifacts"
+export ARTIFACTS_BUCKET_KMS="54d67ee6-ec84-477c-9a50-5ef87d6f0bc6"
+
+printenv | sort | grep -v GITHUB_TOKEN | tee /tmp/env.txt
+
+echo "Set python files in inventory as executable"
+find $CODEBUILD_SRC_DIR_inventory/ -type f -name *.py -exec chmod a+x {} \;
+
+echo "Change dir to /opt/ansible/playbooks/$PLAYBOOK"
+cd /opt/ansible/playbooks/$PLAYBOOK/
+
+bash buildspec.sh
+ exit status 2
+[Container] 2026/04/07 15:23:57.642439 Phase complete: BUILD State: FAILED
+[Container] 2026/04/07 15:23:57.642453 Phase context status code: COMMAND_EXECUTION_ERROR Message: Error while executing command: # See the log above for errors!!!
+
+# Define playbook parameters. This is managed by terraform.
+export PLAYBOOK="mssql_cluster"
+export ENVIRONMENT="qa"
+export ARTIFACTS_BUCKET="hedgeserv-qa-avm-us-east-2-s3-artifacts"
+export ARTIFACTS_BUCKET_KMS="54d67ee6-ec84-477c-9a50-5ef87d6f0bc6"
+
+printenv | sort | grep -v GITHUB_TOKEN | tee /tmp/env.txt
+
+echo "Set python files in inventory as executable"
+find $CODEBUILD_SRC_DIR_inventory/ -type f -name *.py -exec chmod a+x {} \;
+
+echo "Change dir to /opt/ansible/playbooks/$PLAYBOOK"
+cd /opt/ansible/playbooks/$PLAYBOOK/
+
+bash buildspec.sh
+. Reason: exit status 2
+[Container] 2026/04/07 15:23:57.683917 Entering phase POST_BUILD
+[Container] 2026/04/07 15:23:57.684575 Running command echo "Ansible execution completed on `date`"
+Ansible execution completed on Tue Apr  7 15:23:57 UTC 2026
+
+[Container] 2026/04/07 15:23:57.691983 Phase complete: POST_BUILD State: SUCCEEDED
+[Container] 2026/04/07 15:23:57.691996 Phase context status code:  Message: 
+[Container] 2026/04/07 15:23:57.741528 Set report auto-discover timeout to 5 seconds
+[Container] 2026/04/07 15:23:57.741636 Expanding base directory path:  .
+[Container] 2026/04/07 15:23:57.744002 Assembling file list
+[Container] 2026/04/07 15:23:57.744013 Expanding .
+[Container] 2026/04/07 15:23:57.746338 Expanding file paths for base directory .
+[Container] 2026/04/07 15:23:57.746346 Assembling file list
+[Container] 2026/04/07 15:23:57.746348 Expanding **/*
+[Container] 2026/04/07 15:23:57.757032 No matching auto-discover report paths found
+[Container] 2026/04/07 15:23:57.757054 Report auto-discover file discovery took 0.015526 seconds
+[Container] 2026/04/07 15:23:57.757063 Phase complete: UPLOAD_ARTIFACTS State: SUCCEEDED
+[Container] 2026/04/07 15:23:57.757067 Phase context status code:  Message: 
